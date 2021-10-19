@@ -41,9 +41,8 @@
         <div class="row">
             <div class="col-sm-4">
                 <p>Rig status v1.0.0 - By JP</p>
-                <!--   nano_3hiy8juun5b6fpmb5q9a469zp61o4zfqje894ohj6ncpxm641qee8wswb731 -->
                 <br>
-                <input placeholder="Address" value="1EMZmie2Th549raKDJbCNA6XvtkUU8yjYP" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
+                <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
                 <br><br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
                 <br><br>
                 <p>Updating in <span id="update" style="color: #ffff00;">60</span></p>
@@ -59,10 +58,11 @@
                 <br>
                 <p id="totalPaid">Total paid: 0.00 ETH - $0.00</p>
                 <br>
-                <p>Next NANO payout in <span id="payoutTime"></span></p>
+                <p>Next BTC/NANO payout in <span id="payoutTime"></span></p>
                 <br>
                 <p >minPayout: <span id="minPayout"></span></p>
-                <p >Time to reach minPayout: <span id="TimeToMinPayout"></span></p>
+                <p >Total Payout time: <span id="TimeToMinPayout"></span></p>
+                <p >Time to reach minPayout: <span id="TimeLeftToMinPayout"></span></p>
                 <br>
                 <p id="total">Total: 0.00 ETH - $0.00</p>
                 <p id="cleared">Unpaid: 0.00 ETH - $0.00</p>
@@ -192,6 +192,7 @@ var MinToSoundInput = document.getElementById("MinToSoundInput")
 
 var minPayout = document.getElementById("minPayout")
 var TimeToMinPayout = document.getElementById("TimeToMinPayout")
+var TimeLeftToMinPayout = document.getElementById("TimeLeftToMinPayout")
 
 
 var EthDecimal = 1000000000
@@ -371,7 +372,12 @@ async function main(){
                     pending.innerHTML = "Immature: "+(data.stats.immature)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.immature/EthDecimal)*EthPrice)
 
                     minPayout.innerHTML = (data.config.minPayout/EthDecimal)+" ETH"
-                    
+                    var tempN = (data.config.minPayout/EthDecimal)-((data.stats.immature + data.stats.balance)/EthDecimal) / (data.sumrewards[1].reward/EthDecimal*2) 
+                    if (tempN<0){
+                        tempN = -tempN
+                    }
+
+                    TimeLeftToMinPayout.innerHTML = roundToTwo(tempN)+" days"
                     TimeToMinPayout.innerHTML = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) )+" days"
 
                     workers.innerHTML = ""
