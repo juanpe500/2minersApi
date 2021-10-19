@@ -177,7 +177,7 @@ var payoutTime = document.getElementById("payoutTime")
 var ethtousd = document.getElementById("ethtousd")
 var inputConvert = document.getElementById("inputConvert")
 var blocks = document.getElementById("blocks")
-var blocksFounded = document.getElementById("blocksFounded")
+var blocksFoundedP = document.getElementById("blocksFounded")
 var blocksShowed = document.getElementById("blocksShowed")
 
 
@@ -388,7 +388,8 @@ async function main(){
                         payments.innerHTML = payments.innerHTML + "<tr><td>"+ data.payments[key].amount/EthDecimal +"</td><td>"+ "$" + roundToTwo(data.payments[key].amount/EthDecimal * EthPrice) +"</td><td>"+ data.payments[key].txFee +"</td><td>"+ timeConverter(data.payments[key].timestamp) +"</td><td>"+ data.payments[key].tx +"</td></tr>"
                     }
 
-                    blocksFounded.innerHTML = data.rewards.length
+                    blocksFoundedP.innerHTML = data.rewards.length
+                    console.log(data.rewards.length)
                     var limit = data.rewards.length
 
                     blocksShowed.innerHTML = CustomLimit
