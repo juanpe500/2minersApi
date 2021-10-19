@@ -326,6 +326,10 @@ function setUpdateTime(){
     }
 }
 
+function setNewAddress(){
+    window.open('https://juanpe500.github.io/2minersApi/index.html?a='+document.getElementById("addressSearch").value)
+}
+
 async function main(){
     while (true){
         if (count == TimeLimit) {
