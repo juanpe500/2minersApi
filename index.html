@@ -1,0 +1,432 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Blocks - 2miners</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        body{
+            background-color: black;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        p{
+            color: #00ff00;
+            padding: 0;
+            margin: 0;
+        }
+        button{
+            background-color: black;
+            color: #00ff00;
+            border-color: #00ff00;
+        }
+        input{
+            background-color: black;
+            color: #00ff00;
+        }
+        td{
+            color: #00ff00;
+            padding: 5px 15px;
+        }
+        th{
+            color: #00ff00;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <p>Rig status v1.0.0 - By JP</p>
+                <br>
+                <input placeholder="Address" value="nano_11k1y6u9r515wp38go8m1otmebx7xqq37o69r3ik86widmwm7ru1bdgdj4r8" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
+                <br><br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
+                <br><br>
+                <p>Updating in <span id="update" style="color: #ffff00;">60</span></p>
+                <input placeholder="60" value="60" id="settedUpdateTime" style="width: 10%;text-align: center;"> <button onclick="setUpdateTime()">Set Update Time</button>
+                <button onclick="forceupdate()">Force Update</button>
+                <br><br>
+                
+                <div class="row">
+                    <div class="col-sm-2"><input style="width: 100%;" id="inputConvert" onchange="convert()" value="1"></div>
+                    <div class="col-sm-2"><p>ETH = </p></div>
+                    <div class="col-sm-2"><p id="ethtousd">$0</p></div> 
+                </div>
+                <br>
+                <p id="totalPaid">Total paid: 0.00 ETH - $0.00</p>
+                <br>
+                <p>Next NANO payout in <span id="payoutTime"></span></p>
+                <br>
+                <p id="total">Total: 0.00 ETH - $0.00</p>
+                <p id="cleared">Unpaid: 0.00 ETH - $0.00</p>
+                <p id="pending">Immature: 0.00 ETH - $0.00</p>
+                <br>
+                <p id="CHashrate">Current Hashrate: 0 Mh</p>
+                <p id="RHashrate">Reported Hashrate: 0 Mh</p>
+                <br>
+                <p id="sharesValid">sharesValid: 0</p>
+                <p id="sharesInvalid">sharesInvalid: 0</p>
+                <p id="sharesStale">sharesStale: 0</p>
+                <br>
+                <p>Earning History</p>
+                <p>Last 60m: <spam id="l60">0.00 ETH - $0.00</spam></p>
+                <p>Last 24h: <spam id="l24">0.00 ETH - $0.00</spam></p>
+                <p>Last 07d:  <spam id="l7" >0.00 ETH - $0.00</spam></p>
+                <p>Last 30d: <spam id="l30">0.00 ETH - $0.00</spam></p>
+                <br>
+            </div>
+            <div class="col-sm-8">
+                <table id="workersTable" style="overflow: hidden;">
+                    <thead>
+                        <tr>
+                            <th>Worker</th>
+                            <th>Current Mh</th>
+                            <th>Average Mh</th>
+                            <th>Reported Mh</th>
+                            <th>Last Share</th>
+                            <th>Offline</th>
+                            <th>Valid Shares</th>
+                            <th>Invalid Shares</th>
+                            <th>Stale Shares</th>
+                        </tr>
+                    </thead>
+                    <tbody id="workers">
+                    </tbody>
+                </table>
+                <br>
+                <p>Payments:</p>
+                <table style="overflow: hidden;">
+                    <thead>
+                        <tr>
+                            <th id="PaymentsETHTitle">ETH</th>
+                            <th id="PaymentsUSDTitle">USD</th>
+                            <th>Fee</th>
+                            <th>Time</th>
+                            <th>Transaction</th>
+                        </tr>
+                    </thead>
+                    <tbody id="payments">
+                    </tbody>
+                </table>
+                <br>
+                
+
+                <div class="row">
+                    <div class="col-sm-4"><p>Blocks to show: </p></div>
+                    <div class="col-sm-2"><input style="width: 100%;" id="BlockToShowInput" value="100"></div>
+                    <div class="col-sm-2"><button onclick="setBlocksToShow()">Set</button></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><p>Minimun ETH reward to play sound: </p></div>
+                    <div class="col-sm-2"><input style="width: 100%;" id="MinToSoundInput" onchange="convert()" value="0.005"></div>
+                    <div class="col-sm-2"><button onclick="setMinToSound()">Set</button></div>
+                </div>
+                <br>
+                <p>Block Rewards: (<span id="blocksFounded">0</span> founded - <span id="blocksShowed">0</span> showed)</p>
+                <table style="overflow: hidden;" id="BlockTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortBlockTable(0)">Block</th>
+                            <th onclick="sortBlockTable(1)">ETH</th>
+                            <th onclick="sortBlockTable(2)">USD</th>
+                            <th>%</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="blocks">
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </div>   
+</body>
+<script>
+var url_string = window.location.href
+var url = new URL(url_string);
+var c = url.searchParams.get("a");
+if (c && c.length >= 20) {
+    addressSearch.value = c
+}
+var currentAddress = addressSearch.value
+
+var totalPaid = document.getElementById("totalPaid")
+var total   = document.getElementById("total")
+var cleared = document.getElementById("cleared")
+var pending = document.getElementById("pending")
+var update  = document.getElementById("update")
+
+var CHashrate   = document.getElementById("CHashrate")
+var RHashrate = document.getElementById("RHashrate")
+var sharesValid = document.getElementById("sharesValid")
+var sharesInvalid   = document.getElementById("sharesInvalid")
+var sharesStale = document.getElementById("sharesStale")
+
+var workers = document.getElementById("workers")
+var payments = document.getElementById("payments")
+
+var l24 = document.getElementById("l24")
+var l60 = document.getElementById("l60")
+var l7 = document.getElementById("l7")
+var l30 = document.getElementById("l30")
+
+var payoutTime = document.getElementById("payoutTime")
+
+var ethtousd = document.getElementById("ethtousd")
+var inputConvert = document.getElementById("inputConvert")
+var blocks = document.getElementById("blocks")
+var blocksFounded = document.getElementById("blocksFounded")
+var blocksShowed = document.getElementById("blocksShowed")
+
+
+var settedUpdateTime = document.getElementById("settedUpdateTime")
+var BlockToShowInput = document.getElementById("BlockToShowInput")
+var MinToSoundInput = document.getElementById("MinToSoundInput")
+
+
+var EthDecimal = 1000000000
+var MhDecimal = 1000000
+var EthPrice = 0
+var TimeLimit = 60
+var count = TimeLimit
+var CustomLimit = 100
+
+var soundOn = false
+var notBut  = document.getElementById("notBut")
+
+var minToPlaySound = 0.005
+
+let speech = new SpeechSynthesisUtterance()
+speech.lang = "en"
+speech.volume = 2
+voices = window.speechSynthesis.getVoices();
+speech.voice = voices[0];
+
+var blocksFounded = []
+
+function RobotSay(msg){
+    speech.text = msg
+    window.speechSynthesis.speak(speech);
+}
+
+function forceupdate(){
+    count = TimeLimit
+}
+
+function setMinToSound(){
+    var x = 0.005
+    if (parseFloat(MinToSoundInput.value) && parseFloat(MinToSoundInput.value) > 0) {
+        x = parseFloat(MinToSoundInput.value)
+    }
+    minToPlaySound = x
+}
+
+function setBlocksToShow(){
+    var x = 100
+    if (parseFloat(BlockToShowInput.value) && parseFloat(BlockToShowInput.value) >0) {
+        x = parseFloat(BlockToShowInput.value)
+    }
+    CustomLimit = x
+    forceupdate()
+}
+
+function toggNots(){
+    if (soundOn == true){
+        soundOn = false
+        notBut.innerHTML = "Enable Sounds"
+        notBut.style.borderColor = "#ff0000"
+    }else{
+        soundOn = true
+        notBut.innerHTML = "Disable Sounds"
+        notBut.style.borderColor = "#00ff00"
+    }
+}
+
+function hourConverter(UNIX_timestamp){
+        var s = UNIX_timestamp
+        var h = Math.floor(s / 3600);
+        var m = Math.floor(s % 3600 / 60);
+        return h + 'h:' + m + "m";
+    }
+
+function timeConverter(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes();
+        var sec = a.getSeconds();
+        if (hour < 10){
+            hour = "0"+hour
+        }
+        if (min < 10){
+            min = "0"+min
+        }
+        if (date < 10){
+            date = "0"+date
+        }
+
+        var time =  hour + ':' + min + " " + date + '/' + month  ;
+        return time;
+    }
+
+function roundToTwo(num) { 
+    num = num + 0.0002
+    return parseFloat(num).toFixed(2)
+}
+
+function convert(){
+    ethtousd.innerHTML = "$"+(roundToTwo(parseFloat(inputConvert.value)*EthPrice))
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function sortBlockTable(n){
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("BlockTable");
+    switching = true;
+    dir = "dsc";
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+}
+
+function setUpdateTime(){
+    if (parseInt(settedUpdateTime.value,10)){
+        TimeLimit = parseInt(settedUpdateTime.value,10)
+        settedUpdateTime.value = TimeLimit
+        if (count > TimeLimit) {
+            count = TimeLimit
+        }
+    }else{
+        settedUpdateTime.value = TimeLimit
+        if (count > TimeLimit) {
+            count = TimeLimit
+        }
+    }
+}
+
+async function main(){
+    while (true){
+        if (count == TimeLimit) {
+            fetch("https://api.pro.coinbase.com/products/ETH-USDT/ticker")
+            .then(response => response.json())
+            .then(data => {
+                EthPrice = parseFloat(data.price)
+                ethtousd.innerHTML = "$"+roundToTwo(data.price)
+                fetch("https://eth.2miners.com/api/accounts/"+currentAddress)
+
+                .then(response => response.json())
+                .then(data => {
+
+                    CHashrate.innerHTML = "Current Hashrate: "+roundToTwo((data.currentHashrate)/MhDecimal)+" Mh"
+                    RHashrate.innerHTML = "Reported Hashrate: "+roundToTwo((data.hashrate)/MhDecimal)+" Mh"
+
+                    sharesValid.innerHTML = "sharesValid: "+data.sharesValid
+                    sharesInvalid.innerHTML = "sharesInvalid: "+data.sharesInvalid
+                    sharesStale.innerHTML = "sharesStale: "+data.sharesStale
+
+                    totalPaid.innerHTML = "Total paid: "+(data.stats.paid/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
+
+                    l24.innerHTML = (data["24hreward"]/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
+                    
+                    l60.innerHTML = (data["sumrewards"][0].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][0].reward/EthDecimal)*EthPrice)
+                    l7.innerHTML = (data["sumrewards"][3].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][3].reward/EthDecimal)*EthPrice)
+                    l30.innerHTML = (data["sumrewards"][4].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][4].reward/EthDecimal)*EthPrice)
+
+                    total.innerHTML = "Total: "+(data.stats.immature + data.stats.balance)/EthDecimal+" ETH - $"+roundToTwo( ((data.stats.immature + data.stats.balance)/EthDecimal)*EthPrice)
+                    cleared.innerHTML = "Unpaid: "+(data.stats.balance)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.balance/EthDecimal)*EthPrice)
+                    pending.innerHTML = "Immature: "+(data.stats.immature)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.immature/EthDecimal)*EthPrice)
+
+                    workers.innerHTML = ""
+                    for (var key in data.workers) {
+                        workers.innerHTML = workers.innerHTML + "<tr><td>"+ key +"</td><td>"+ roundToTwo(data.workers[key].hr/MhDecimal) +"</td><td>"+ roundToTwo(data.workers[key].hr2/MhDecimal) +"</td><td>"+ roundToTwo(data.workers[key].rhr/MhDecimal) +"</td><td>"+ timeConverter(data.workers[key].lastBeat) +"</td><td>"+ data.workers[key].offline +"</td><td>"+ data.workers[key].sharesValid +"</td><td>"+ data.workers[key].sharesInvalid +"</td><td>"+ data.workers[key].sharesStale +"</td></tr>"
+                    }
+
+                    var RightNow = new Date();        
+                    
+                    var horaActual = RightNow.getUTCHours()
+                    if (horaActual > 24) {
+                        horaActual -= 24
+                    }
+
+                    if (horaActual<=12){
+                        horaActual = 12 - horaActual
+                    }else{
+                        horaActual = (24 - horaActual) + 12
+                    }
+
+                    payoutTime.innerHTML = horaActual+" hours"
+
+
+                    payments.innerHTML = ""
+                    for (var key in data.payments) {
+                        payments.innerHTML = payments.innerHTML + "<tr><td>"+ data.payments[key].amount/EthDecimal +"</td><td>"+ "$" + roundToTwo(data.payments[key].amount/EthDecimal * EthPrice) +"</td><td>"+ data.payments[key].txFee +"</td><td>"+ timeConverter(data.payments[key].timestamp) +"</td><td>"+ data.payments[key].tx +"</td></tr>"
+                    }
+
+                    blocksFounded.innerHTML = data.rewards.length
+                    var limit = data.rewards.length
+
+                    blocksShowed.innerHTML = CustomLimit
+                    if (limit > CustomLimit){
+                        limit = CustomLimit
+                    }
+
+                    if (CustomLimit-1 >= data.rewards.length){
+                        limit = data.rewards.length
+                    }
+
+                    blocks.innerHTML = ""
+                    for (let i = 0; i < limit; i++) {
+                        var key = i
+                        blocks.innerHTML = blocks.innerHTML + "<tr><td>"+ data.rewards[key].blockheight +"</td><td>"+ data.rewards[key].reward/EthDecimal +"</td><td>"+ roundToTwo((data.rewards[key].reward/EthDecimal)* EthPrice) +"</td><td>"+ roundToTwo(data.rewards[key].percent*100) + "%" +"</td><td>"+ timeConverter(data.rewards[key].timestamp) +"</td></tr>"
+                        if (soundOn == true && data.rewards[key].reward/EthDecimal > minToPlaySound){
+                            var canSound = true
+                            for (let j = 0; j < blocksFounded.length; j++) {
+                                if (blocksFounded[j] == data.rewards[key].blockheight){
+                                    canSound = false
+                                }
+                            }
+                            if (canSound == true){
+                                RobotSay("new block reward of "+data.rewards[key].reward/EthDecimal)
+                                blocksFounded.push(data.rewards[key].blockheight)
+                            }
+                        }
+                    }
+                })
+            })
+        }
+        count = count - 1
+        if (count<=0){
+            count = TimeLimit
+        }
+        update.innerHTML = count.toString()
+        await sleep(1000);
+    }
+}
+
+main()
+    
+
+</script>
+</html>
