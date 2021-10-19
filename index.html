@@ -386,7 +386,7 @@ async function main(){
 
                     payments.innerHTML = ""
                     for (var key in data.payments) {
-                        payments.innerHTML = payments.innerHTML + "<tr><td>"+ data.payments[key].amount/EthDecimal +"</td><td>"+ "$" + roundToTwo(data.payments[key].amount/EthDecimal * EthPrice) +"</td><td>"+ data.payments[key].txFee +"</td><td>"+ timeConverter(data.payments[key].timestamp) +"</td><td>"+ data.payments[key].tx +"</td></tr>"
+                        payments.innerHTML = payments.innerHTML + "<tr><td>"+ data.payments[key].amount/EthDecimal +"</td><td>"+ "$" + roundToTwo(data.payments[key].amount/EthDecimal * EthPrice) +"</td><td>"+ data.payments[key].txFee/EthDecimal +"</td><td>"+ timeConverter(data.payments[key].timestamp) +"</td><td>"+ data.payments[key].tx +"</td></tr>"
                     }
 
                     blocksFoundedP.innerHTML = data.rewards.length
