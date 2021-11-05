@@ -380,7 +380,8 @@ async function main(){
                     }
 
                     TimeLeftToMinPayout.innerHTML = roundToTwo(tempN)+" days"
-                    TimeToMinPayout.innerHTML = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) )+" days"
+                    var dd = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) )
+                    TimeToMinPayout.innerHTML = dd+" days - "+ (1440*parseFloat(dd)) +" minutes"
 
                     workers.innerHTML = ""
                     for (var key in data.workers) {
