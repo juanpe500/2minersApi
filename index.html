@@ -3,36 +3,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucky Blocks - 2miners</title>
+    <title>2minersApi - By JP</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <style>
-        body{
-            background-color: black;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        p{
-            color: #00ff00;
-            padding: 0;
-            margin: 0;
-        }
-        button{
-            background-color: black;
-            color: #00ff00;
-            border-color: #00ff00;
-        }
-        input{
-            background-color: black;
-            color: #00ff00;
-        }
-        td{
-            color: #00ff00;
-            padding: 5px 15px;
-        }
-        th{
-            color: #00ff00;
-            padding: 5px 10px;
-        }
+        body{ background-color: black; font-family: 'Courier New', Courier, monospace; }
+        p{ color: #00ff00; padding: 0; margin: 0; }
+        button{ background-color: black; color: #00ff00; border-color: #00ff00; }
+        input{ background-color: black; color: #00ff00; }
+        td{ color: #00ff00; padding: 5px 15px; }
+        th{ color: #00ff00; padding: 5px 10px; }
     </style>
 </head>
 <body>
@@ -41,7 +20,6 @@
         <div class="row">
             <div class="col-sm-4">
                 <p>Rig status v1.0.0 - By JP</p>
-                <!-- nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie -->
                 <br>
                 <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
                 <br><br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
@@ -379,9 +357,11 @@ async function main(){
                         tempN = -tempN
                     }
 
-                    TimeLeftToMinPayout.innerHTML = roundToTwo(tempN)+" days"
+                    var ddd = roundToTwo(tempN)
+                    TimeLeftToMinPayout.innerHTML = ddd+" days = "+  (1440*parseFloat(ddd)) +" minutes"
+                    
                     var dd = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) )
-                    TimeToMinPayout.innerHTML = dd+" days - "+ (1440*parseFloat(dd)) +" minutes"
+                    TimeToMinPayout.innerHTML = dd+" days = "+ (1440*parseFloat(dd)) +" minutes"
 
                     workers.innerHTML = ""
                     for (var key in data.workers) {
