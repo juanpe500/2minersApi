@@ -332,21 +332,16 @@ async function main(){
                 EthPrice = parseFloat(data.price)
                 ethtousd.innerHTML = "$"+roundToTwo(data.price)
                 fetch("https://eth.2miners.com/api/accounts/"+currentAddress)
-
                 .then(response => response.json())
                 .then(data => {
-
                     CHashrate.innerHTML = "Current Hashrate: "+roundToTwo((data.currentHashrate)/MhDecimal)+" Mh"
                     RHashrate.innerHTML = "Reported Hashrate: "+roundToTwo((data.hashrate)/MhDecimal)+" Mh"
-
                     sharesValid.innerHTML = "sharesValid: "+data.sharesValid
                     sharesInvalid.innerHTML = "sharesInvalid: "+data.sharesInvalid
                     sharesStale.innerHTML = "sharesStale: "+data.sharesStale
-
                     totalPaid.innerHTML = "Total paid: "+(data.stats.paid/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
-
-                    //l24.innerHTML = (data["24hreward"]/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
                     
+                    //l24.innerHTML = (data["24hreward"]/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
                     l60.innerHTML = (data["sumrewards"][0].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][0].reward/EthDecimal)*EthPrice)
                     l12.innerHTML = (data["sumrewards"][1].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][1].reward/EthDecimal)*EthPrice)
                     l24.innerHTML = (data["sumrewards"][2].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][2].reward/EthDecimal)*EthPrice)
@@ -358,16 +353,12 @@ async function main(){
                     pending.innerHTML = "Immature: "+(data.stats.immature)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.immature/EthDecimal)*EthPrice)
 
                     minPayout.innerHTML = (data.stats.balance/EthDecimal).toFixed(4)+"/"+(data.config.minPayout/EthDecimal).toFixed(4)+" ETH"
-
                     
                     var tempN =  (((data.config.minPayout - data.stats.balance)/EthDecimal) / (data.sumrewards[2].reward/EthDecimal) ) //data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) -
                     console.log((data.stats.balance/EthDecimal) +">="+ (data.config.minPayout/EthDecimal) )
-                    if (  (data.stats.balance/EthDecimal) >= data.config.minPayout/EthDecimal){
-                        tempN = 0
-                    }
-                    if (tempN<0){
-                        tempN = -tempN
-                    }
+                    
+                    if (  (data.stats.balance/EthDecimal) >= data.config.minPayout/EthDecimal){ tempN = 0 }
+                    if (tempN<0){ tempN = -tempN }
 
                     var ddd = roundToTwo(tempN)
                     TimeLeftToMinPayout.innerHTML = ddd+" days = "+  getHoursAndMinutes(1440*parseFloat(ddd)) 
