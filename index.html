@@ -357,7 +357,7 @@ async function main(){
                     cleared.innerHTML = "Unpaid: "+(data.stats.balance)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.balance/EthDecimal)*EthPrice)
                     pending.innerHTML = "Immature: "+(data.stats.immature)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.immature/EthDecimal)*EthPrice)
 
-                    minPayout.innerHTML = (data.config.minPayout/EthDecimal)+" ETH"
+                    minPayout.innerHTML = (data.stats.balance/EthDecimal)+"/"+(data.config.minPayout/EthDecimal)+" ETH"
 
                     
                     var tempN =  (((data.config.minPayout - data.stats.balance)/EthDecimal) / (data.sumrewards[2].reward/EthDecimal) ) //data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) -
