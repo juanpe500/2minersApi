@@ -317,6 +317,12 @@ function setUpdateTime(){
 function setNewAddress(){
     window.open('https://juanpe500.github.io/2minersApi/index.html?a='+document.getElementById("addressSearch").value)
 }
+    
+function getHoursAndMinutes(minutes){
+    var hh = Math.floor(minutes/60)
+    var mm = hh % 60
+    return hh+"h:"+mm+"m"
+}
 
 async function main(){
     while (true){
@@ -358,10 +364,10 @@ async function main(){
                     }
 
                     var ddd = roundToTwo(tempN)
-                    TimeLeftToMinPayout.innerHTML = ddd+" days = "+  (1440*parseFloat(ddd)) +" minutes"
+                    TimeLeftToMinPayout.innerHTML = ddd+" days = "+  getHoursAndMinutes(1440*parseFloat(ddd)) +" minutes"
                     
                     var dd = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) )
-                    TimeToMinPayout.innerHTML = dd+" days = "+ (1440*parseFloat(dd)) +" minutes"
+                    TimeToMinPayout.innerHTML = dd+" days = "+ getHoursAndMinutes(1440*parseFloat(dd)) +" minutes"
 
                     workers.innerHTML = ""
                     for (var key in data.workers) {
