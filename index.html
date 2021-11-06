@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
-                <p>Rig status v1.0.1 - By JP</p>
+                <p>Rig status v1.0.2 - By JP</p>
                 <br>
                 <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
                 <br><br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
@@ -345,7 +345,7 @@ async function main(){
                     cleared.innerHTML = "Unpaid: "+(data.stats.balance)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.balance/EthDecimal)*EthPrice)
                     pending.innerHTML = "Immature: "+(data.stats.immature)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.immature/EthDecimal)*EthPrice)
 
-                    var tmp1 = Math.Round((data.stats.balance/EthDecimal).toFixed(4) / (data.config.minPayout/EthDecimal).toFixed(4))
+                    var tmp1 = Math.round((data.stats.balance/EthDecimal).toFixed(4) / (data.config.minPayout/EthDecimal).toFixed(4))
                     minPayout.innerHTML = (data.stats.balance/EthDecimal).toFixed(4)+"/"+(data.config.minPayout/EthDecimal).toFixed(4)+" ETH - "+(tmp1*100)+"% - $"+0+"/"+0
                     
                     var tempN =  (((data.config.minPayout - data.stats.balance)/EthDecimal) / (data.sumrewards[2].reward/EthDecimal) ) //data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) -
