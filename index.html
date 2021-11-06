@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
-                <p>Rig status v1.0.2 - By JP</p>
+                <p>Rig status v1.0.1 - By JP</p>
                 <br>
                 <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
                 <br><br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
@@ -233,11 +233,11 @@ function toggNots(){
 }
 
 function hourConverter(UNIX_timestamp){
-        var s = UNIX_timestamp
-        var h = Math.floor(s / 3600);
-        var m = Math.floor(s % 3600 / 60);
-        return h + 'h:' + m + "m";
-    }
+    var s = UNIX_timestamp
+    var h = Math.floor(s / 3600);
+    var m = Math.floor(s % 3600 / 60);
+    return h + 'h:' + m + "m";
+}
 
 function timeConverter(UNIX_timestamp){
     var a = new Date(UNIX_timestamp * 1000);
@@ -379,7 +379,6 @@ async function main(){
                     }
 
                     payoutTime.innerHTML = horaActual+" hours"
-
 
                     payments.innerHTML = ""
                     for (var key in data.payments) {
