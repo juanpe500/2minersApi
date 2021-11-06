@@ -346,8 +346,8 @@ async function main(){
                     cleared.innerHTML = "Unpaid: "+(data.stats.balance)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.balance/EthDecimal)*EthPrice)
                     pending.innerHTML = "Immature: "+(data.stats.immature)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.immature/EthDecimal)*EthPrice)
 
-                    var tmp1 = Math.round((data.stats.balance/EthDecimal).toFixed(4) / (data.config.minPayout/EthDecimal).toFixed(4))
-                    minPayout.innerHTML = (data.stats.balance/EthDecimal).toFixed(4)+"/"+(data.config.minPayout/EthDecimal).toFixed(4)+" ETH - "+(tmp1*100)+"% - $"+0+"/"+0
+                    var tmp1 = (data.stats.balance/EthDecimal).toFixed(4) / (data.config.minPayout/EthDecimal).toFixed(4)
+                    minPayout.innerHTML = (data.stats.balance/EthDecimal).toFixed(4)+"/"+(data.config.minPayout/EthDecimal).toFixed(4)+" ETH - "+Math.round(tmp1*100)+"% - $"+((data.stats.balance/EthDecimal)*EthPrice).toFixed(2)+"/"+((data.config.minPayout/EthDecimal)*EthPrice).toFixed(2)
                     
                     var tempN =  (((data.config.minPayout - data.stats.balance)/EthDecimal) / (data.sumrewards[2].reward/EthDecimal) ) //data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) -
                                     
