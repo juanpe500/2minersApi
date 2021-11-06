@@ -364,10 +364,10 @@ async function main(){
                     }
 
                     var ddd = roundToTwo(tempN)
-                    TimeLeftToMinPayout.innerHTML = ddd+" days = "+  getHoursAndMinutes(1440*parseFloat(ddd)) +" minutes"
+                    TimeLeftToMinPayout.innerHTML = ddd+" days = "+  getHoursAndMinutes(1440*parseFloat(ddd)) 
                     
                     var dd = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) )
-                    TimeToMinPayout.innerHTML = dd+" days = "+ getHoursAndMinutes(1440*parseFloat(dd)) +" minutes"
+                    TimeToMinPayout.innerHTML = dd+" days = "+ getHoursAndMinutes(1440*parseFloat(dd)) 
 
                     workers.innerHTML = ""
                     for (var key in data.workers) {
