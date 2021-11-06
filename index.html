@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
-                <p>Rig status v1.0.0 - By JP</p>
+                <p>Rig status v1.0.3 - By JP</p>
                 <br>
                 <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
                 <br><br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
@@ -358,7 +358,11 @@ async function main(){
 
                     minPayout.innerHTML = (data.config.minPayout/EthDecimal)+" ETH"
 
-                    var tempN =  (((data.config.minPayout - data.stats.balance)/EthDecimal) / (data.sumrewards[1].reward/EthDecimal*2) ) //data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) -
+                    
+                    var tempN =  (((data.config.minPayout - data.stats.balance)/EthDecimal) / (data.sumrewards[2].reward/EthDecimal) ) //data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) -
+                    if (  ((data.stats.immature + data.stats.balance)/EthDecimal) >= data.config.minPayout){
+                        tempN = 0
+                    }
                     if (tempN<0){
                         tempN = -tempN
                     }
@@ -366,7 +370,7 @@ async function main(){
                     var ddd = roundToTwo(tempN)
                     TimeLeftToMinPayout.innerHTML = ddd+" days = "+  getHoursAndMinutes(1440*parseFloat(ddd)) 
                     
-                    var dd = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) )
+                    var dd = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[2].reward/EthDecimal) )
                     TimeToMinPayout.innerHTML = dd+" days = "+ getHoursAndMinutes(1440*parseFloat(dd)) 
 
                     workers.innerHTML = ""
