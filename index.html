@@ -57,6 +57,7 @@
                 <br>
                 <p>Earning History</p>
                 <p>Last 60m: <spam id="l60">0.00 ETH - $0.00</spam></p>
+                <p>Last 12h: <spam id="l12">0.00 ETH - $0.00</spam></p>
                 <p>Last 24h: <spam id="l24">0.00 ETH - $0.00</spam></p>
                 <p>Last 07d:  <spam id="l7" >0.00 ETH - $0.00</spam></p>
                 <p>Last 30d: <spam id="l30">0.00 ETH - $0.00</spam></p>
@@ -149,6 +150,7 @@ var workers = document.getElementById("workers")
 var payments = document.getElementById("payments")
 
 var l24 = document.getElementById("l24")
+var l12 = document.getElementById("l12")
 var l60 = document.getElementById("l60")
 var l7 = document.getElementById("l7")
 var l30 = document.getElementById("l30")
@@ -343,9 +345,11 @@ async function main(){
 
                     totalPaid.innerHTML = "Total paid: "+(data.stats.paid/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
 
-                    l24.innerHTML = (data["24hreward"]/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
+                    //l24.innerHTML = (data["24hreward"]/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
                     
                     l60.innerHTML = (data["sumrewards"][0].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][0].reward/EthDecimal)*EthPrice)
+                    l12.innerHTML = (data["sumrewards"][1].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][1].reward/EthDecimal)*EthPrice)
+                    l24.innerHTML = (data["sumrewards"][2].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][2].reward/EthDecimal)*EthPrice)
                     l7.innerHTML = (data["sumrewards"][3].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][3].reward/EthDecimal)*EthPrice)
                     l30.innerHTML = (data["sumrewards"][4].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][4].reward/EthDecimal)*EthPrice)
 
