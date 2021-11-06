@@ -22,8 +22,8 @@
                 <p>Rig status v1.0.2 - By JP</p>
                 <br>
                 <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
-                <br><br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
-                <br><br>
+                <br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
+                <br>
                 <p>Updating in <span id="update" style="color: #ffff00;">60</span></p>
                 <input placeholder="60" value="60" id="settedUpdateTime" style="width: 10%;text-align: center;"> <button onclick="setUpdateTime()">Set Update Time</button>
                 <button onclick="forceupdate()">Force Update</button>
@@ -33,8 +33,6 @@
                     <div class="col-sm-2"><p>ETH = </p></div>
                     <div class="col-sm-2"><p id="ethtousd">$0</p></div> 
                 </div>
-                <br> 
-                <p id="totalPaid">Total paid: 0.00 ETH - $0.00</p>
                 <br>
                 <p>Next BTC/NANO payout in <span id="payoutTime"></span></p>
                 <br>
@@ -54,6 +52,8 @@
                 <p id="sharesValid">sharesValid: 0</p>
                 <p id="sharesInvalid">sharesInvalid: 0</p>
                 <p id="sharesStale">sharesStale: 0</p>
+                <br>
+                <p id="totalPaid">Total paid: 0.00 ETH - $0.00</p>
                 <br>
                 <p>Earning History</p>
                 <p>Last 60m: <spam id="l60">0.00 ETH - $0.00</spam></p>
