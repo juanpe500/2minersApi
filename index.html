@@ -364,18 +364,11 @@ async function main(){
                         workers.innerHTML = workers.innerHTML + "<tr><td>"+ key +"</td><td>"+ roundToTwo(data.workers[key].hr/MhDecimal) +"</td><td>"+ roundToTwo(data.workers[key].hr2/MhDecimal) +"</td><td>"+ roundToTwo(data.workers[key].rhr/MhDecimal) +"</td><td>"+ timeConverter(data.workers[key].lastBeat) +"</td><td>"+ data.workers[key].offline +"</td><td>"+ data.workers[key].sharesValid +"</td><td>"+ data.workers[key].sharesInvalid +"</td><td>"+ data.workers[key].sharesStale +"</td></tr>"
                     }
 
-                    var RightNow = new Date();        
-                    
+                    var RightNow = new Date();
                     var horaActual = RightNow.getUTCHours()
-                    if (horaActual > 24) {
-                        horaActual -= 24
-                    }
+                    if (horaActual > 24) { horaActual -= 24 }
 
-                    if (horaActual<=12){
-                        horaActual = 12 - horaActual
-                    }else{
-                        horaActual = (24 - horaActual) + 12
-                    }
+                    if (horaActual<=12){ horaActual = 12 - horaActual }else{ horaActual = (24 - horaActual) + 12 }
 
                     payoutTime.innerHTML = horaActual+" hours"
 
@@ -425,6 +418,5 @@ async function main(){
     }
 }
 main()
-    
 </script>
 </html>
