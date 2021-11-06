@@ -303,7 +303,7 @@ function setNewAddress(){
     
 function getHoursAndMinutes(minutes){
     var hh = Math.floor(minutes/60)
-    var mm = hh % 60
+    var mm = minutes-(hh*60) // hh % 60
     return hh+"h:"+mm+"m"
 }
 
