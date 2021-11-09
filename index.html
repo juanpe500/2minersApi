@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
-                <p>Rig status v1.0.2 - By JP</p>
+                <p>Rig status v1.0.1 - By JP</p>
                 <br>
                 <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
                 <br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
@@ -355,6 +355,8 @@ async function main(){
                     var dd = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[2].reward/EthDecimal) )
                     TimeToMinPayout.innerHTML = dd+" days = "+ getHoursAndMinutes(1440*parseFloat(dd)) 
 
+                    
+                    
                     var dddd = new Date()
                     var hhhh = dddd.getHours()
 
@@ -378,6 +380,8 @@ async function main(){
                     
                     sharesPerMinute.innerHTML = "Shares per minute: "+ (data.sharesValid/TSMinutes).toFixed(3)
 
+                    
+                    
                     workers.innerHTML = ""
                     for (var key in data.workers) {
                         workers.innerHTML = workers.innerHTML + "<tr><td>"+ key +"</td><td>"+ roundToTwo(data.workers[key].hr/MhDecimal) +"</td><td>"+ roundToTwo(data.workers[key].hr2/MhDecimal) +"</td><td>"+ roundToTwo(data.workers[key].rhr/MhDecimal) +"</td><td>"+(data.workers[key].sharesValid/TSMinutes).toFixed(3) +"</td><td>"+ timeConverter(data.workers[key].lastBeat) +"</td><td>"+ data.workers[key].offline +"</td><td>"+ data.workers[key].sharesValid +"</td><td>"+ data.workers[key].sharesInvalid +"</td><td>"+ data.workers[key].sharesStale +"</td></tr>"
