@@ -29,7 +29,6 @@
                 <button onclick="forceupdate()">Force Update</button>
                 <br>
                 <br>
-                
                 <div class="row">
                     <div class="col-sm-2"><input style="width: 100%;" id="inputConvert" onchange="convert()" value="1"></div>
                     <div class="col-sm-2"><p>ETH = </p></div>
@@ -376,6 +375,7 @@ async function main(){
 
                     var TSMinutes = (Date.now() - SharesTimeStamp) / 60000
                     sharesScanTime.innerHTML = "Scan time: "+getHoursAndMinutes(TSMinutes) 
+                    
                     sharesPerMinute.innerHTML = "Shares per minute: "+ (data.sharesValid/TSMinutes).toFixed(3)
 
                     workers.innerHTML = ""
