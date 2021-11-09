@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
-                <span>Rig status v1.1.0 - By JP</span>
+                <span>Rig status v1.1.1 - By JP</span>
                 <div style="border: 1px solid #00ff0050;padding: 5px;">
                     <p>Donations are appreciated <3</p>
                     <p>BTC - 19doxJRR31vis3BK3TEr7rak58gnkWPf8G</p>
@@ -354,11 +354,12 @@ function getHoursAndMinutes(minutes){
 async function main(){
     while (true){
         if (count == TimeLimit) {
-            fetch("https://api.pro.coinbase.com/products/ETH-USDT/ticker")
+            fetch("https://api.pro.coinbase.com/products/ETH-USD/ticker")
             .then(response => response.json())
             .then(data => {
                 EthPrice = parseFloat(data.price)
-                ethtousd.innerHTML = "$"+roundToTwo(data.price)
+                ethtousd.innerHTML = "$"+roundToTwo(data.price*  parseFloat(inputConvert.value))
+                
                 fetch("https://eth.2miners.com/api/accounts/"+currentAddress)
                 .then(response => response.json())
                 .then(data => {
