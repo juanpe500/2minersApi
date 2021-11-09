@@ -410,8 +410,7 @@ async function main(){
                         var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 07:00:00'
                         SharesTimeStamp = Date.parse(str)
                     }
-                    // SharesTimeStamp (TSMinutes/60).toFixed(2)+" hours = "+
-
+                    
                     var TSMinutes = (Date.now() - SharesTimeStamp) / 60000
                     sharesScanTime.innerHTML = "Scan time: "+getHoursAndMinutes(TSMinutes) 
                     
