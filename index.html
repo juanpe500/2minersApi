@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
-                <p>Rig status v1.0.2 - By JP</p>
+                <p>Rig status v1.0.1 - By JP</p>
                 <br>
                 <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
                 <br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
@@ -360,8 +360,14 @@ async function main(){
                     if (hhhh >= 13 && hhhh < 19){
                         var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 13:00:00'
                         SharesTimeStamp = Date.parse(str)
-                    }else{
+                    }else if (hhhh >= 19 || hhhh < 2){
                         var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 19:00:00'
+                        SharesTimeStamp = Date.parse(str)
+                    }else if (hhhh >= 2 || hhhh < 8){
+                        var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 01:00:00'
+                        SharesTimeStamp = Date.parse(str)
+                    }else if (hhhh >= 8 || hhhh < 13){
+                        var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 07:00:00'
                         SharesTimeStamp = Date.parse(str)
                     }
                     // SharesTimeStamp
