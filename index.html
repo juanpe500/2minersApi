@@ -401,13 +401,9 @@ async function main(){
                     var limit = data.rewards.length
 
                     blocksShowed.innerHTML = CustomLimit
-                    if (limit > CustomLimit){
-                        limit = CustomLimit
-                    }
+                    if (limit > CustomLimit){ limit = CustomLimit }
 
-                    if (CustomLimit-1 >= data.rewards.length){
-                        limit = data.rewards.length
-                    }
+                    if (CustomLimit-1 >= data.rewards.length){ limit = data.rewards.length }
 
                     blocks.innerHTML = ""
                     for (let i = 0; i < limit; i++) {
