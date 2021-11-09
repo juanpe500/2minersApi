@@ -359,7 +359,6 @@ async function main(){
             .then(data => {
                 EthPrice = parseFloat(data.price)
                 ethtousd.innerHTML = "$"+roundToTwo(data.price*  parseFloat(inputConvert.value))
-                
                 fetch("https://eth.2miners.com/api/accounts/"+currentAddress)
                 .then(response => response.json())
                 .then(data => {
