@@ -7,11 +7,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         body{ background-color: black; font-family: 'Courier New', Courier, monospace; }
-        p{ color: #00ff00; padding: 0; margin: 0; }
+        p{ color: #00ff00e3; padding: 0; margin: 0; }
         button{ background-color: black; color: #00ff00; border-color: #00ff00; }
         input{ background-color: black; color: #00ff00; }
         td{ color: #00ff00; padding: 5px 15px; }
         th{ color: #00ff00; padding: 5px 10px; }
+        span{color: #00ff00; font-weight: bolder; } 
     </style>
 </head>
 <body>
@@ -20,51 +21,85 @@
         <div class="row">
             <div class="col-sm-4">
                 <p>Rig status v1.0.1 - By JP</p>
-                <br>
-                <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
-                <br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
-                <br>
-                <p>Updating in <span id="update" style="color: #ffff00;">60</span></p>
-                <input placeholder="60" value="60" id="settedUpdateTime" style="width: 10%;text-align: center;"> <button onclick="setUpdateTime()">Set Update Time</button>
-                <button onclick="forceupdate()">Force Update</button>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col-sm-2"><input style="width: 100%;" id="inputConvert" onchange="convert()" value="1"></div>
-                    <div class="col-sm-2"><p>ETH = </p></div>
-                    <div class="col-sm-2"><p id="ethtousd">$0</p></div> 
+                <div style="border: 1px solid #00ff0050;padding: 5px;">
+                    <p>Donations are appreciated <3</p>
+                    <p>BTC - 19doxJRR31vis3BK3TEr7rak58gnkWPf8G</p>
+                    <p>ETH - 0x96b0a612ca4c1a4c0a9d2370fefecad20778b79d</p>
+                    <p>NANO - <span  style="font-size: 12px; font-weight: normal;">nano_1sj9w343ksxibcunzp83j6aew4nk7smqm4by1f7kpzxmd1quqfgmn6t7s9c8</span></p>
                 </div>
-                <br>
-                <p>Next BTC/NANO payout in <span id="payoutTime"></span></p>
-                <p >Total Payout time formula: (minPayout/24HourEarnings)</p>
-                <br>
-                <p >minPayout: <span id="minPayout"></span></p>
-                <p >Total Payout time: <span id="TimeToMinPayout"></span></p>
-                <p >Time to reach minPayout: <span id="TimeLeftToMinPayout"></span></p>
-                <br>
-                <p id="totalPaid">Total paid: 0.00 ETH - $0.00</p>
-                <br>
-                
-                <p id="total">Total: 0.00 ETH - $0.00</p>
-                <p id="cleared">Unpaid: 0.00 ETH - $0.00</p>
-                <p id="pending">Immature: 0.00 ETH - $0.00</p>
-                <br>
-                <p id="CHashrate">Current Hashrate: 0 Mh</p>
-                <p id="RHashrate">Reported Hashrate: 0 Mh</p>
-                <br>
-                <p id="sharesScanTime">Scan Time: 0</p>
-                <p id="sharesPerMinute">Shares per minute: 0</p>
-                <p id="sharesValid">sharesValid: 0</p>
-                <p id="sharesInvalid">sharesInvalid: 0</p>
-                <p id="sharesStale">sharesStale: 0</p>
-                <br>
-                <p>Earning History</p>
-                <p>Last 60m: <spam id="l60">0.00 ETH - $0.00</spam></p>
-                <p>Last 12h: <spam id="l12">0.00 ETH - $0.00</spam></p>
-                <p>Last 24h: <spam id="l24">0.00 ETH - $0.00</spam></p>
-                <p>Last 07d:  <spam id="l7" >0.00 ETH - $0.00</spam></p>
-                <p>Last 30d: <spam id="l30">0.00 ETH - $0.00</spam></p>
-                <br>
+                <div style="border: 1px solid #00ff0050;padding: 5px;">
+                    <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
+                    <br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
+                    <br>
+                    <p>Updating in <span id="update" style="color: #ffff00;">60</span></p>
+                    <input placeholder="60" value="60" id="settedUpdateTime" style="width: 10%;text-align: center;"> <button onclick="setUpdateTime()">Set Update Time</button>
+                    <button onclick="forceupdate()">Force Update</button>
+                </div>
+                <div style="border: 1px solid #00ff0050;padding: 5px;">
+                    <div class="row">
+                        <div class="col-sm-2"><input style="width: 100%;" id="inputConvert" onchange="convert()" value="1"></div>
+                        <div class="col-sm-2"><p>ETH = </p></div>
+                        <div class="col-sm-2"><p id="ethtousd">$0</p></div> 
+                    </div>
+                </div>
+                <div style="border: 1px solid #00ff0050;padding: 5px;">
+                    <p >minPayout: <span id="minPayout"></span></p>
+                    <p >Total Payout time: <span id="TimeToMinPayout"></span></p>
+                    <p >Time to reach minPayout: <span id="TimeLeftToMinPayout"></span></p>
+                    <p>Next BTC/NANO payout in <span id="payoutTime"></span></p>
+                </div>
+                <div style="border: 1px solid #00ff0050;padding: 5px;">
+                    <p id="total">Total: 0.00 ETH - $0.00</p>
+                    <p id="cleared">Unpaid: 0.00 ETH - $0.00</p>
+                    <p id="pending">Immature: 0.00 ETH - $0.00</p>
+                </div>
+                <div style="border: 1px solid #00ff0050;padding: 5px;">
+                    <p id="CHashrate">Current Hashrate: 0 Mh</p>
+                    <p id="RHashrate">Reported Hashrate: 0 Mh</p>
+                </div>
+                <div style="border: 1px solid #00ff0050;padding: 0px 10px;">
+                    <div class="row">
+                        <div class="col-sm-6" style="border: 1px solid #00ff0050">
+                            <p id="sharesPerMinute">Shares per minute: 0</p>
+                        </div>
+                        <div class="col-sm-6" style="border: 1px solid #00ff0050">
+                            <p id="sharesScanTime">Scan Time: 0</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4" style="border: 1px solid #00ff0050">
+                            <p id="sharesValid">sharesValid: 0</p>
+                        </div>
+                        <div class="col-sm-4" style="border: 1px solid #00ff0050">
+                            <p id="sharesInvalid">sharesInvalid: 0</p>
+                        </div>
+                        <div class="col-sm-4" style="border: 1px solid #00ff0050">
+                            <p id="sharesStale">sharesStale: 0</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="border: 1px solid #00ff0050;padding: 5px;">
+                    <span>Earning History</span>
+                    <p>Last 60m: <span id="l60">0.00 ETH - $0.00</span></p>
+                    <p>Last 12h: <span id="l12">0.00 ETH - $0.00</span></p>
+                    <p>Last 24h: <span id="l24">0.00 ETH - $0.00</span></p>
+                    <p>Last 07d:  <span id="l7" >0.00 ETH - $0.00</span></p>
+                    <p>Last 30d: <span id="l30">0.00 ETH - $0.00</span></p>
+                    <p>Total paid: <span  id="totalPaid">0.00 ETH - $0.00</span></p>
+                </div>
+                <div style="border: 1px solid #00ff0050;padding: 5px;">
+                    <div class="row">
+                        <div class="col-sm-6"><p>Block Rewards to show: </p></div>
+                        <div class="col-sm-2"><input style="width: 100%;" id="BlockToShowInput" value="100"></div>
+                        <div class="col-sm-2"><button onclick="setBlocksToShow()">Set</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><p>Minimun ETH reward to play sound: </p></div>
+                        <div class="col-sm-2"><input style="width: 100%;" id="MinToSoundInput" onchange="convert()" value="0.005"></div>
+                        <div class="col-sm-2"><button onclick="setMinToSound()">Set</button></div>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-8">
                 <table id="workersTable" style="overflow: hidden;">
@@ -86,47 +121,46 @@
                     </tbody>
                 </table>
                 <br>
-                <p>Payments:</p>
-                <table style="overflow: hidden;">
-                    <thead>
-                        <tr>
-                            <th id="PaymentsETHTitle">ETH</th>
-                            <th id="PaymentsUSDTitle">USD</th>
-                            <th>Fee</th>
-                            <th>Time</th>
-                            <th>Transaction</th>
-                        </tr>
-                    </thead>
-                    <tbody id="payments">
-                    </tbody>
-                </table>
-                <br>
+
                 <div class="row">
-                    <div class="col-sm-4"><p>Blocks to show: </p></div>
-                    <div class="col-sm-2"><input style="width: 100%;" id="BlockToShowInput" value="100"></div>
-                    <div class="col-sm-2"><button onclick="setBlocksToShow()">Set</button></div>
+                    <div class="col-sm-6">
+                        <p>Block Rewards: (<span id="blocksFounded">0</span> founded - <span id="blocksShowed">0</span> showed)</p>
+                        <p>(Click table header to sort)</p>
+                        <table style="overflow: hidden;" id="BlockTable">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortBlockTable(0)">Block</th>
+                                    <th onclick="sortBlockTable(1)">ETH</th>
+                                    <th onclick="sortBlockTable(2)">USD</th>
+                                    <th>%</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="blocks">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Payments:</p>
+                        <table style="overflow: hidden;">
+                            <thead>
+                                <tr>
+                                    <th id="PaymentsETHTitle">ETH</th>
+                                    <th id="PaymentsUSDTitle">USD</th>
+                                    <th>Fee</th>
+                                    <th>Time</th>
+                                    <th>Transaction</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payments">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-4"><p>Minimun ETH reward to play sound: </p></div>
-                    <div class="col-sm-2"><input style="width: 100%;" id="MinToSoundInput" onchange="convert()" value="0.005"></div>
-                    <div class="col-sm-2"><button onclick="setMinToSound()">Set</button></div>
-                </div>
-                <br>
-                <p>Block Rewards: (<span id="blocksFounded">0</span> founded - <span id="blocksShowed">0</span> showed)</p>
-                <p>(Click table header to sort)</p>
-                <table style="overflow: hidden;" id="BlockTable">
-                    <thead>
-                        <tr>
-                            <th onclick="sortBlockTable(0)">Block</th>
-                            <th onclick="sortBlockTable(1)">ETH</th>
-                            <th onclick="sortBlockTable(2)">USD</th>
-                            <th>%</th>
-                            <th>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody id="blocks">
-                    </tbody>
-                </table>
+
+                
+                
+                
             </div>
         </div>  
     </div>   
@@ -312,7 +346,7 @@ function setNewAddress(){
     
 function getHoursAndMinutes(minutes){
     var hh = Math.floor(minutes/60)
-    var mm = minutes-(hh*60) // hh % 60
+    var mm = minutes-(hh*60) 
     return hh+"h:"+Math.round(mm)+"m"
 }
 
@@ -332,7 +366,7 @@ async function main(){
                     sharesValid.innerHTML = "sharesValid: "+data.sharesValid
                     sharesInvalid.innerHTML = "sharesInvalid: "+data.sharesInvalid
                     sharesStale.innerHTML = "sharesStale: "+data.sharesStale
-                    totalPaid.innerHTML = "Total paid: "+(data.stats.paid/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
+                    totalPaid.innerHTML = (data.stats.paid/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
                     
                     l60.innerHTML = (data["sumrewards"][0].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][0].reward/EthDecimal)*EthPrice)
                     l12.innerHTML = (data["sumrewards"][1].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][1].reward/EthDecimal)*EthPrice)
@@ -347,8 +381,9 @@ async function main(){
                     var tmp1 = (data.stats.balance/EthDecimal).toFixed(4) / (data.config.minPayout/EthDecimal).toFixed(4)
                     minPayout.innerHTML = (data.stats.balance/EthDecimal).toFixed(4)+"/"+(data.config.minPayout/EthDecimal).toFixed(4)+" ETH - "+Math.round(tmp1*100)+"% - $"+((data.stats.balance/EthDecimal)*EthPrice).toFixed(2)+"/$"+((data.config.minPayout/EthDecimal)*EthPrice).toFixed(2)
                     
+                    document.getElementsByTagName("title")[0].innerHTML = minPayout.innerHTML
                     var tempN =  (((data.config.minPayout - data.stats.balance)/EthDecimal) / (data.sumrewards[2].reward/EthDecimal) ) //data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) -
-                                    
+                    
                     if (  (data.stats.balance/EthDecimal) >= (data.config.minPayout/EthDecimal)   ){ tempN = 0 }
                     if (tempN<0){ tempN = -tempN }
 
@@ -357,8 +392,6 @@ async function main(){
                     
                     var dd = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[2].reward/EthDecimal) )
                     TimeToMinPayout.innerHTML = dd+" days = "+ getHoursAndMinutes(1440*parseFloat(dd)) 
-
-                    
                     
                     var dddd = new Date()
                     var hhhh = dddd.getHours()
@@ -399,7 +432,7 @@ async function main(){
 
                     payments.innerHTML = ""
                     for (var key in data.payments) {
-                        payments.innerHTML = payments.innerHTML + "<tr><td>"+ data.payments[key].amount/EthDecimal +"</td><td>"+ "$" + roundToTwo(data.payments[key].amount/EthDecimal * EthPrice) +"</td><td>"+ data.payments[key].txFee/EthDecimal +"</td><td>"+ timeConverter(data.payments[key].timestamp) +"</td><td>"+ data.payments[key].tx +"</td></tr>"
+                        payments.innerHTML = payments.innerHTML + "<tr><td>"+ data.payments[key].amount/EthDecimal +"</td><td>"+ "$" + roundToTwo(data.payments[key].amount/EthDecimal * EthPrice) +"</td><td>"+ data.payments[key].txFee/EthDecimal +"</td><td>"+ timeConverter(data.payments[key].timestamp) +"</td><td>   <a href='https://eth.2miners.com/es/account/"+currentAddress+"#payments' target='_blank' style='color:#00ff00'>"+ data.payments[key].tx.slice(0,6) +"...</a>    </td></tr>"
                     }
 
                     blocksFoundedP.innerHTML = data.rewards.length
