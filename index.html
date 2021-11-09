@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
-                <p>Rig status v1.0.2 - By JP</p>
+                <p>Rig status v1.0.1 - By JP</p>
                 <br>
                 <input placeholder="Address" value="nano_34rsmfagymcziz3r63o4cnfhwhd61h1a1fm6zk9nta56bm7767cui6pm4qie" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
                 <br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
@@ -345,7 +345,7 @@ async function main(){
                     
                     var tempN =  (((data.config.minPayout - data.stats.balance)/EthDecimal) / (data.sumrewards[2].reward/EthDecimal) ) //data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) -
                                     
-                    if (  (data.stats.balance/EthDecimal) >= data.config.minPayout/EthDecimal){ tempN = 0 }
+                    if (  (data.stats.balance/EthDecimal) >= (data.config.minPayout/EthDecimal)   ){ tempN = 0 }
                     if (tempN<0){ tempN = -tempN }
 
                     var ddd = roundToTwo(tempN)
@@ -370,14 +370,11 @@ async function main(){
                         var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 07:00:00'
                         SharesTimeStamp = Date.parse(str)
                     }
-                    // SharesTimeStamp
+                    // SharesTimeStamp (TSMinutes/60).toFixed(2)+" hours = "+
 
                     var TSMinutes = (Date.now() - SharesTimeStamp) / 60000
-                    sharesScanTime.innerHTML = "Scan time: "+(TSMinutes/60).toFixed(2)+" hours = "+getHoursAndMinutes(TSMinutes) 
+                    sharesScanTime.innerHTML = "Scan time: "+getHoursAndMinutes(TSMinutes) 
                     sharesPerMinute.innerHTML = "Shares per minute: "+ (data.sharesValid/TSMinutes).toFixed(3)
-
-
-
 
                     workers.innerHTML = ""
                     for (var key in data.workers) {
@@ -387,7 +384,6 @@ async function main(){
                     var RightNow = new Date();
                     var horaActual = RightNow.getUTCHours()
                     if (horaActual > 24) { horaActual -= 24 }
-
                     if (horaActual<=12){ horaActual = 12 - horaActual }else{ horaActual = (24 - horaActual) + 12 }
 
                     payoutTime.innerHTML = horaActual+" hours"
@@ -402,7 +398,6 @@ async function main(){
 
                     blocksShowed.innerHTML = CustomLimit
                     if (limit > CustomLimit){ limit = CustomLimit }
-
                     if (CustomLimit-1 >= data.rewards.length){ limit = data.rewards.length }
 
                     blocks.innerHTML = ""
