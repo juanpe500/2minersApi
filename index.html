@@ -131,11 +131,8 @@
 </body>
 <script>
 var url_string = window.location.href
-var url = new URL(url_string);
-var c = url.searchParams.get("a");
-if (c && c.length >= 20) {
-    addressSearch.value = c
-}
+var url = new URL(url_string)
+var c = url.searchParams.get("a")
 var currentAddress = addressSearch.value
 var totalPaid = document.getElementById("totalPaid")
 var total   = document.getElementById("total")
@@ -182,15 +179,19 @@ var minToPlaySound = 0.005
 let speech = new SpeechSynthesisUtterance()
 speech.lang = "en"
 speech.volume = 2
-voices = window.speechSynthesis.getVoices();
-speech.voice = voices[0];
+voices = window.speechSynthesis.getVoices()
+speech.voice = voices[0]
     
 var SharesTimeStamp = 1636394400000
 var blocksFounded = []
 
+if (c && c.length >= 20) {
+    addressSearch.value = c
+}
+
 function RobotSay(msg){
     speech.text = msg
-    window.speechSynthesis.speak(speech);
+    window.speechSynthesis.speak(speech)
 }
 
 function forceupdate(){
