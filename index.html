@@ -29,11 +29,10 @@
                 </div>
                 <div style="border: 1px solid #00ff0050;padding: 5px;">
                     <input placeholder="Address" value="19doxJRR31vis3BK3TEr7rak58gnkWPf8G" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
-                    <br><button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Enable Sounds</button>
                     <br>
-                    <p>Updating in <span id="update" style="color: #ffff00;">60</span></p>
                     <input placeholder="60" value="60" id="settedUpdateTime" style="width: 10%;text-align: center;"> <button onclick="setUpdateTime()">Set Update Time</button>
                     <button onclick="forceupdate()">Force Update</button>
+                    <p>Updating in <span id="update" style="color: #ffff00;">60</span></p>
                 </div>
                 <div style="border: 1px solid #00ff0050;padding: 5px;">
                     <div class="row">
@@ -97,8 +96,10 @@
                     <div class="row">
                         <div class="col-sm-6"><p>Minimun ETH reward to play sound: </p></div>
                         <div class="col-sm-2"><input style="width: 100%;" id="MinToSoundInput" onchange="convert()" value="0.005"></div>
-                        <div class="col-sm-2"><button onclick="setMinToSound()">Set</button></div>
+                        <div class="col-sm-4"><button onclick="setMinToSound()">Set</button>
+                            <button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Sounds OFF</button></div>
                     </div>
+
                 </div>
             </div>
             <div class="col-sm-8">
@@ -256,11 +257,11 @@ function setBlocksToShow(){
 function toggNots(){
     if (soundOn == true){
         soundOn = false
-        notBut.innerHTML = "Enable Sounds"
+        notBut.innerHTML = "Sounds OFF"
         notBut.style.borderColor = "#ff0000"
     }else{
         soundOn = true
-        notBut.innerHTML = "Disable Sounds"
+        notBut.innerHTML = "Sounds ON"
         notBut.style.borderColor = "#00ff00"
     }
 }
