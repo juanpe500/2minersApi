@@ -167,6 +167,8 @@ var TimeLeftToMinPayout = document.getElementById("TimeLeftToMinPayout")
 var sharesPerMinute = document.getElementById("sharesPerMinute")
 var sharesScanTime = document.getElementById("sharesScanTime")
 
+var SharesTimeStamp = 1636394400000
+var blocksFounded = []
 var EthDecimal = 1000000000
 var MhDecimal = 1000000
 var EthPrice = 0
@@ -182,8 +184,6 @@ speech.volume = 2
 voices = window.speechSynthesis.getVoices()
 speech.voice = voices[0]
     
-var SharesTimeStamp = 1636394400000
-var blocksFounded = []
 
 if (c && c.length >= 20) {
     addressSearch.value = c
