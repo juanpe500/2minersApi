@@ -411,7 +411,6 @@ async function main(){
                         SharesTimeStamp = Date.parse(str)
                     }
                     // SharesTimeStamp (TSMinutes/60).toFixed(2)+" hours = "+
-
                     var TSMinutes = (Date.now() - SharesTimeStamp) / 60000
                     sharesScanTime.innerHTML = "Scan time: "+getHoursAndMinutes(TSMinutes) 
                     
