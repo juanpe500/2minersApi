@@ -3,471 +3,562 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2minersApi - By JP</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Krypto</title>
+    <link rel="icon" type="image/png" href="https://www.pngkit.com/png/full/22-227809_a-bitcoin-logo-bitcoin.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <style>
-        body{ background-color: black; font-family: 'Courier New', Courier, monospace; }
-        p{ color: #00ff00e3; padding: 0; margin: 0; }
-        button{ background-color: black; color: #00ff00; border-color: #00ff00; }
-        input{ background-color: black; color: #00ff00; }
-        td{ color: #00ff00; padding: 5px 15px; }
-        th{ color: #00ff00; padding: 5px 10px; }
-        span{color: #00ff00; font-weight: bolder; } 
+        body{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        }
+        div{
+            border: 0px solid rgb(0, 0, 0);
+            height: 50px;
+        }
+        nav{
+            background-color: #a0e8f5;
+        }
+        .vodiapicker{
+            display: none; 
+        }
+        .vodiapicker2{
+            display: none; 
+        }
+
+        #a{
+            padding-left: 0px;
+        }
+
+        #a2{
+            padding-left: 0px;
+        }
+
+        #a img,#a2 img, .btn-select img, .btn-select2 img{
+            width: 12px;
+        }
+
+        #a li, #a2 li{
+            list-style: none;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        #a li:hover, #a2 li:hover{
+            background-color: #F4F3F3;
+        }
+
+        #a li img, #a2 li img{
+            margin: 5px;
+        }
+
+        #a li span, #a2 li span, .btn-select li span{
+            margin-left: 30px;
+        }
+
+        .btn-select2 li span{
+            margin-left: 30px;
+        }
+        /* item list */
+
+        .b{
+            display: none;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 5px;
+            background-color:rgba(255, 255, 255, 0.85);
+            z-index: 9;
+            position: relative;
+        }
+
+        .b2{
+            display: none;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 5px;
+            background-color:rgba(255, 255, 255, 0.85);
+            z-index: 9;
+            position: relative
+        }
+
+        .open{
+            display: show !important;
+        }
+
+        .btn-select{
+            margin-top: 10px;
+            width: 100%;
+            max-width: 350px;
+            height: 34px;
+            border-radius: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .btn-select2{
+            margin-top: 10px;
+            width: 100%;
+            max-width: 350px;
+            height: 34px;
+            border-radius: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .btn-select li, .btn-select2 li{
+            list-style: none;
+            float: left;
+            padding-bottom: 0px;
+        }
+
+        .btn-select:hover li, .btn-select2:hover li{
+            margin-left: 0px;
+        }
+
+        .btn-select:hover, .btn-select2:hover{
+            background-color: #F4F3F3;
+            border: 1px solid transparent;
+            box-shadow: inset 0 0px 0px 1px #ccc;
+        }
+
+        .btn-select:focus, .btn-select2:focus{
+            outline:none;
+        }
     </style>
 </head>
-<body>
-    <br>
-    <div class="container-fluid">
+<body style="background-image: url('https://cryptofrontline.com/wp-content/uploads/2021/08/weekly-crypto-analysis-1.jpg');background-repeat: no-repeat;  background-attachment: fixed;  background-size: cover;">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#" style="margin-left: 15px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+          <img src="https://www.pngkit.com/png/full/22-227809_a-bitcoin-logo-bitcoin.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          Krypto
+        </a>
+    </nav>
+    <div class="container" style="background-color:rgba(255, 255, 255, 0.85); height: 75%; border-radius: 30px;">
+        <div class="row" style="margin-top: 50px; border-radius: 5px; background-color: rgb(200, 200, 200);height: 25px;">
+            <p id="info" style="text-align: center;vertical-align: middle;margin: 0;margin-top: 0px;"></p>
+        </div>
         <div class="row">
-            <div class="col-sm-4">
-                <span>Rig status v1.1.1 - By JP</span>
-                <div style="border: 1px solid #00ff0050;padding: 5px;">
-                    <p>Donations are appreciated <3</p>
-                    <p>BTC - 19doxJRR31vis3BK3TEr7rak58gnkWPf8G</p>
-                    <p>ETH - 0x96b0a612ca4c1a4c0a9d2370fefecad20778b79d</p>
-                    <p>NANO - <span  style="font-size: 12px; font-weight: normal;">nano_1sj9w343ksxibcunzp83j6aew4nk7smqm4by1f7kpzxmd1quqfgmn6t7s9c8</span></p>
-                </div>
-                <div style="border: 1px solid #00ff0050;padding: 5px;">
-                    <input placeholder="Address" value="19doxJRR31vis3BK3TEr7rak58gnkWPf8G" id="addressSearch" style="width: 75%;"><button onclick='setNewAddress()'>Search</button>
-                    <br>
-                    <input placeholder="60" value="60" id="settedUpdateTime" style="width: 10%;text-align: center;"> <button onclick="setUpdateTime()">Set Update Time</button>
-                    <button onclick="forceupdate()">Force Update</button>
-                    <p>Updating in <span id="update" style="color: #ffff00;">60</span></p>
-                </div>
-                <div style="border: 1px solid #00ff0050;padding: 5px;">
-                    <div class="row">
-                        <div class="col-sm-2"><input style="width: 100%;" id="inputConvert" onchange="convert()" value="1"></div>
-                        <div class="col-sm-2"><p>ETH = </p></div>
-                        <div class="col-sm-2"><p id="ethtousd">$0</p></div> 
-                    </div>
-                </div>
-                <div style="border: 1px solid #00ff0050;padding: 5px;">
-                    <p >minPayout: <span id="minPayout"></span></p>
-                    <p >Total Payout time: <span id="TimeToMinPayout"></span></p>
-                    <p >Time to reach minPayout: <span id="TimeLeftToMinPayout"></span></p>
-                    <p>Next BTC/NANO payout in <span id="payoutTime"></span></p>
-                </div>
-                <div style="border: 1px solid #00ff0050;padding: 5px;">
-                    <p id="total">Total: 0.00 ETH - $0.00</p>
-                    <p id="cleared">Unpaid: 0.00 ETH - $0.00</p>
-                    <p id="pending">Immature: 0.00 ETH - $0.00</p>
-                </div>
-                <div style="border: 1px solid #00ff0050;padding: 5px;">
-                    <p id="CHashrate">Current Hashrate: 0 Mh</p>
-                    <p id="RHashrate">Reported Hashrate: 0 Mh</p>
-                </div>
-                <div style="border: 1px solid #00ff0050;padding: 0px 10px;">
-                    <div class="row">
-                        <div class="col-sm-6" style="border: 1px solid #00ff0050">
-                            <p id="sharesPerMinute">Shares per minute: 0</p>
-                        </div>
-                        <div class="col-sm-6" style="border: 1px solid #00ff0050">
-                            <p id="sharesScanTime">Scan Time: 0</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4" style="border: 1px solid #00ff0050">
-                            <p id="sharesValid">sharesValid: 0</p>
-                        </div>
-                        <div class="col-sm-4" style="border: 1px solid #00ff0050">
-                            <p id="sharesInvalid">sharesInvalid: 0</p>
-                        </div>
-                        <div class="col-sm-4" style="border: 1px solid #00ff0050">
-                            <p id="sharesStale">sharesStale: 0</p>
-                        </div>
-                    </div>
-
-                </div>
-                <div style="border: 1px solid #00ff0050;padding: 5px;">
-                    <span>Earning History</span>
-                    <p>Last 60m: <span id="l60">0.00 ETH - $0.00</span></p>
-                    <p>Last 12h: <span id="l12">0.00 ETH - $0.00</span></p>
-                    <p>Last 24h: <span id="l24">0.00 ETH - $0.00</span></p>
-                    <p>Last 07d:  <span id="l7" >0.00 ETH - $0.00</span></p>
-                    <p>Last 30d: <span id="l30">0.00 ETH - $0.00</span></p>
-                    <p>Total paid: <span  id="totalPaid">0.00 ETH - $0.00</span></p>
-                </div>
-                <div style="border: 1px solid #00ff0050;padding: 5px;">
-                    <div class="row">
-                        <div class="col-sm-6"><p>Block Rewards to show: </p></div>
-                        <div class="col-sm-2"><input style="width: 100%;" id="BlockToShowInput" value="100"></div>
-                        <div class="col-sm-2"><button onclick="setBlocksToShow()">Set</button></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6"><p>Minimun ETH reward to play sound: </p></div>
-                        <div class="col-sm-2"><input style="width: 100%;" id="MinToSoundInput" onchange="convert()" value="0.005"></div>
-                        <div class="col-sm-4"><button onclick="setMinToSound()">Set</button>
-                            <button onclick="toggNots()" id="notBut" style="border-color: #ff0000;">Sounds OFF</button></div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <table id="workersTable" style="overflow: hidden;">
-                    <thead>
-                        <tr>
-                            <th>Worker</th>
-                            <th>Current Mh</th>
-                            <th>Average Mh</th>
-                            <th>Reported Mh</th>
-                            <th>Share/minute</th>
-                            <th>Last Share</th>
-                            <th>Offline</th>
-                            <th>Valid Shares</th>
-                            <th>Invalid Shares</th>
-                            <th>Stale Shares</th>
-                        </tr>
-                    </thead>
-                    <tbody id="workers">
-                    </tbody>
-                </table>
-                <br>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>Block Rewards: (<span id="blocksFounded">0</span> founded - <span id="blocksShowed">0</span> showed)</p>
-                        <p>(Click table header to sort)</p>
-                        <table style="overflow: hidden;" id="BlockTable">
-                            <thead>
-                                <tr>
-                                    <th onclick="sortBlockTable(0)">Block</th>
-                                    <th onclick="sortBlockTable(1)">ETH</th>
-                                    <th onclick="sortBlockTable(2)">USD</th>
-                                    <th>%</th>
-                                    <th>Time</th>
-                                </tr>
-                            </thead>
-                            <tbody id="blocks">
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>Payments:</p>
-                        <table style="overflow: hidden;">
-                            <thead>
-                                <tr>
-                                    <th id="PaymentsETHTitle">ETH</th>
-                                    <th id="PaymentsUSDTitle">USD</th>
-                                    <th>Fee</th>
-                                    <th>Time</th>
-                                    <th>Transaction</th>
-                                </tr>
-                            </thead>
-                            <tbody id="payments">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
+            <div class="col-sm-1"><img src="" id="CurrentImage" style="width: 100%;"></div>
+            <div class="col-sm-11"><h1 style="width: 100%;" id="CurrentName"> Moneda</h1></div>
+            <!-- <div class="col-sm-7"></div> -->
+        </div>
+        
+        <div class="row" style="margin-top: 10px; margin-bottom: 50px;">
+            
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2"><input id="v1" class="form-control" value="1" style="width: 100%;" onblur="updateValue2()"></div>
+            <div class="col-sm-2">
                 
-                
+                <select id="v1input" onchange="update()" class="form-control vodiapicker" style="width: 100%;"></select>
+
+                <div class="crypto-input">
+                    <button class="btn-select" value="" id="Input1"></button>
+                    <div class="b" id="b">
+                        <ul id="a"></ul>
+                    </div>
+                </div>
                 
             </div>
-        </div>  
-    </div>   
+            <div class="col-sm-2"><p style="text-align: center;">=</p></div>
+            <div class="col-sm-2"><input id="v2" class="form-control" value="" style="width: 100%;" onblur="updateValue1()"></div>
+            <div class="col-sm-2">
+
+                <select id="v2input" onchange="update2()" class="form-control vodiapicker2" style="width: 100%;"></select>
+                <div class="crypto-input2">
+                    <button class="btn-select2" value="" id="Input2"></button>
+                    <div class="b2" id="b2">
+                        <ul id="a2"></ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+
+
+        <style>
+            .TimeButton{
+                width: 50px;
+                border-radius: 50px;
+                border-color: rgba(0,0,0,0);
+                background-color: rgb(48, 113, 151);
+                color: #fff;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+            .TBselected{
+                width: 50px;
+                border-radius: 50px;
+                border-color: rgba(0,0,0,0);
+                background-color: rgb(29, 70, 94);
+                color: #fff;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+            .HistoyChart{
+                border-radius: 50px;
+                background-color: #fff;
+            }
+        </style>
+        <div class="row HistoyChart" >
+            <div class="col-sm-8 TimeButtons">
+                <button class="TimeButton" onclick="GetPriceChart('24h')">24h</button>
+                <button class="TimeButton" onclick="GetPriceChart('7d')">7d</button>
+                <button class="TimeButton" onclick="GetPriceChart('1m')">1m</button>
+                <button class="TimeButton" onclick="GetPriceChart('3m')">3m</button>
+                <button class="TimeButton" onclick="GetPriceChart('6m')">6m</button>
+                <button class="TimeButton TBselected" onclick="GetPriceChart('1y')">1y</button>
+                <button class="TimeButton" onclick="GetPriceChart('All')">All</button>
+                <!-- <button class="TimeButton" style="width: 70px!important;">Custom</button> -->
+            </div>
+            <div class="col-sm-4"></div>
+            
+            <div class="row">
+                <div class="col-sm-8" >
+                    <canvas id="HystoryChart" width="400" height="200"></canvas>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+
+    </div>
+    
+    <p style="color: #fff;">v1.0</p>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+
+
+
+
 <script>
-var url_string = window.location.href
-var url = new URL(url_string)
-var c = url.searchParams.get("a")
+    var v1 = document.getElementById("v1")
+    var v2 = document.getElementById("v2")
+    var v1input = document.getElementById("v1input")
+    var v2input = document.getElementById("v2input")
+    var Input1 = document.getElementById("Input1")
+    var Input2 = document.getElementById("Input2")
+    var info = document.getElementById("info")
+    var CurrentImage = document.getElementById("CurrentImage")
+    var CurrentName = document.getElementById("CurrentName") 
+    var currentConvertionPrice = 0
+    var linked = false
 
-if (c && c.length >= 20) {
-    addressSearch.value = c
-}
-    
-var currentAddress = addressSearch.value
-var totalPaid = document.getElementById("totalPaid")
-var total   = document.getElementById("total")
-var cleared = document.getElementById("cleared")
-var pending = document.getElementById("pending")
-var update  = document.getElementById("update")
-var CHashrate   = document.getElementById("CHashrate")
-var RHashrate = document.getElementById("RHashrate")
-var sharesValid = document.getElementById("sharesValid")
-var sharesInvalid   = document.getElementById("sharesInvalid")
-var sharesStale = document.getElementById("sharesStale")
-var workers = document.getElementById("workers")
-var payments = document.getElementById("payments")
-var l24 = document.getElementById("l24")
-var l12 = document.getElementById("l12")
-var l60 = document.getElementById("l60")
-var l7 = document.getElementById("l7")
-var l30 = document.getElementById("l30")
-var payoutTime = document.getElementById("payoutTime")
-var ethtousd = document.getElementById("ethtousd")
-var inputConvert = document.getElementById("inputConvert")
-var blocks = document.getElementById("blocks")
-var blocksFoundedP = document.getElementById("blocksFounded")
-var blocksShowed = document.getElementById("blocksShowed")
-var settedUpdateTime = document.getElementById("settedUpdateTime")
-var BlockToShowInput = document.getElementById("BlockToShowInput")
-var MinToSoundInput = document.getElementById("MinToSoundInput")
-var notBut  = document.getElementById("notBut")
-var minPayout = document.getElementById("minPayout")
-var TimeToMinPayout = document.getElementById("TimeToMinPayout")
-var TimeLeftToMinPayout = document.getElementById("TimeLeftToMinPayout")
-var sharesPerMinute = document.getElementById("sharesPerMinute")
-var sharesScanTime = document.getElementById("sharesScanTime")
+    var currency = "BTC-USD"
 
-var SharesTimeStamp = 1636394400000
-var blocksFounded = []
-var EthDecimal = 1000000000
-var MhDecimal = 1000000
-var EthPrice = 0
-var TimeLimit = 60
-var count = TimeLimit
-var CustomLimit = 100
-var soundOn = false
-var minToPlaySound = 0.005
+    let HystoryChart;
 
-let speech = new SpeechSynthesisUtterance()
-speech.lang = "en"
-speech.volume = 2
-voices = window.speechSynthesis.getVoices()
-speech.voice = voices[0]
-    
+    var CurrencyName = ""
 
+    var SymbolNames = [
 
-function RobotSay(msg){
-    speech.text = msg
-    window.speechSynthesis.speak(speech)
-}
+    ]
 
-function forceupdate(){
-    count = TimeLimit
-}
+    var mainData = []
+    var Currencies = [
+        [ "BTC", [] ], [ "ETH", [] ], [ "ADA", [] ], [ "DOGE", [] ],
+    ]
 
-function setMinToSound(){
-    var x = 0.005
-    if (parseFloat(MinToSoundInput.value) && parseFloat(MinToSoundInput.value) > 0) {
-        x = parseFloat(MinToSoundInput.value)
+    function isListed(x){
+        for (let i = 0; i < Currencies.length; i++) {
+            if (x == Currencies[i][0]) {
+                return true
+            } 
+        }
+        return false
     }
-    minToPlaySound = x
-}
 
-function setBlocksToShow(){
-    var x = 100
-    if (parseFloat(BlockToShowInput.value) && parseFloat(BlockToShowInput.value) >0) {
-        x = parseFloat(BlockToShowInput.value)
+    function listConvertions(x,y){
+        for (let i = 0; i < Currencies.length; i++) {
+            if (x == Currencies[i][0]) {
+                Currencies[i][1].push(y)
+            } 
+        }
     }
-    CustomLimit = x
-    forceupdate()
-}
 
-function toggNots(){
-    if (soundOn == true){
-        soundOn = false
-        notBut.innerHTML = "Sounds OFF"
-        notBut.style.borderColor = "#ff0000"
-    }else{
-        soundOn = true
-        notBut.innerHTML = "Sounds ON"
-        notBut.style.borderColor = "#00ff00"
-    }
-}
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
 
-function hourConverter(UNIX_timestamp){
-    var s = UNIX_timestamp
-    var h = Math.floor(s / 3600);
-    var m = Math.floor(s % 3600 / 60);
-    return h + 'h:' + m + "m";
-}
 
-function timeConverter(UNIX_timestamp){
-    var a = new Date(UNIX_timestamp * 1000);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var hour = a.getHours();
-    var min = a.getMinutes();
-    var sec = a.getSeconds();
-    if (hour < 10){ hour = "0"+hour }
-    if (min < 10){ min = "0"+min }
-    if (date < 10){ date = "0"+date }
-    var time =  hour + ':' + min + " " + date + '/' + month  ;
-    return time;
-}
+    function GetPriceChart(timeSet){
 
-function roundToTwo(num) { 
-    num = num + 0.0002
-    return parseFloat(num).toFixed(2)
-}
+        var buttons = document.getElementsByClassName("TimeButton")
+        for (let i = 0; i < buttons.length; i++) {
+            const button = buttons[i];
+            console.log(buttons[i])
+            button.classList.remove("TBselected");
 
-function convert(){
-    ethtousd.innerHTML = "$"+(roundToTwo(parseFloat(inputConvert.value)*EthPrice))
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function sortBlockTable(n){
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("BlockTable");
-    switching = true;
-    dir = "dsc";
-    while (switching) {
-        switching = false;
-        rows = table.rows;
-        for (i = 1; i < (rows.length - 1); i++) {
-            shouldSwitch = false;
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            if (Number(x.innerHTML) < Number(y.innerHTML)) {
-                shouldSwitch = true;
-                break;
+            if (button.innerHTML == timeSet) {
+                button.classList.add("TBselected");
             }
         }
-        if (shouldSwitch) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
+
+        var timeToRest = 0
+        var now = Math.round(Date.now()/1000)
+
+        if (timeSet == "1y") {
+            timeToRest = 31536000
+        }else if (timeSet == "6m") {
+            timeToRest = 15768000
+        }else if (timeSet == "3m") {
+            timeToRest = 2628288*3
+        }else if (timeSet == "1m") {
+            timeToRest = 2628288
+        }else if (timeSet == "7d") {
+            timeToRest = 86400*7
+        }else if (timeSet == "24h") {
+            timeToRest = 86400
+        }else if (timeSet == "All") {
+            timeToRest = now
         }
+
+        var fCurrency = Input2.value
+        if (fCurrency.toLocaleLowerCase() == "usdt" || fCurrency.toLocaleLowerCase() == "usdc" || fCurrency.toLocaleLowerCase() == "ust"){ fCurrency = "usd" }
+        fetch("https://api.coingecko.com/api/v3/coins/"+CurrencyName.toLocaleLowerCase()+"/market_chart/range?vs_currency="+fCurrency.toLocaleLowerCase()+"&from="+(now-timeToRest)+"&to="+now)
+        .then(response3 => response3.json())
+        .then(data3 => {
+            
+            document.getElementById('HystoryChart').innerHTML = ""
+            var Pdata = []
+            var Plabels = []
+
+            for (let i = 0; i < data3.prices.length; i++) {
+                Pdata.push(data3.prices[i][1])
+                var d = new Date(data3.prices[i][0]); d.getMonth()
+                if (timeSet == "24h"){
+                    Plabels.push((d.getHours()+1)+":"+d.getMinutes()+" - "+(d.getDate() + 1))
+                }else{
+                    Plabels.push((d.getDate()+1)+" "+monthNames[d.getMonth()]+" "+d.getFullYear())
+                }
+            }
+
+            var timeSetted = timeSet
+            const ctx = document.getElementById('HystoryChart').getContext('2d');
+            if (HystoryChart != null) {
+                HystoryChart.destroy();
+            }
+            HystoryChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Plabels,
+                    datasets: [{
+                        label: timeSetted+' Price',
+                        data: Pdata,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(99, 99, 255, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                    }
+                }
+            });
+        });
+
+
     }
-}
 
-function setUpdateTime(){
-    if (parseInt(settedUpdateTime.value,10)){
-        TimeLimit = parseInt(settedUpdateTime.value,10)
-        settedUpdateTime.value = TimeLimit
-        if (count > TimeLimit) {
-            count = TimeLimit
-        }
-    }else{
-        settedUpdateTime.value = TimeLimit
-        if (count > TimeLimit) {
-            count = TimeLimit
-        }
-    }
-}
-
-function setNewAddress(){
-    window.open('https://juanpe500.github.io/2minersApi/index.html?a='+document.getElementById("addressSearch").value)
-}
-    
-function getHoursAndMinutes(minutes){
-    var hh = Math.floor(minutes/60)
-    var mm = minutes-(hh*60) 
-    return hh+"h:"+Math.round(mm)+"m"
-}
-
-async function main(){
-    while (true){
-        if (count == TimeLimit) {
-            fetch("https://api.pro.coinbase.com/products/ETH-USD/ticker")
+    function convert(){
+        var cr1 = Input1.value
+        currency = Input1.value+"-"+Input2.value
+        console.log("currency: "+currency)
+        if (Input1.value == Input2.value){
+            v2.value = v1.value
+        }else{
+            fetch('https://api.pro.coinbase.com/products/'+currency+"/ticker")//
             .then(response => response.json())
             .then(data => {
-                EthPrice = parseFloat(data.price)
-                ethtousd.innerHTML = "$"+roundToTwo(data.price*  parseFloat(inputConvert.value))
-                fetch("https://eth.2miners.com/api/accounts/"+currentAddress)
-                .then(response => response.json())
-                .then(data => {
-                    CHashrate.innerHTML = "Current Hashrate: "+roundToTwo((data.currentHashrate)/MhDecimal)+" Mh"
-                    RHashrate.innerHTML = "Reported Hashrate: "+roundToTwo((data.hashrate)/MhDecimal)+" Mh"
-                    sharesValid.innerHTML = "sharesValid: "+data.sharesValid
-                    sharesInvalid.innerHTML = "sharesInvalid: "+data.sharesInvalid
-                    sharesStale.innerHTML = "sharesStale: "+data.sharesStale
-                    totalPaid.innerHTML = (data.stats.paid/EthDecimal)+" ETH - $"+roundToTwo( (data.stats.paid/EthDecimal)*EthPrice)
-                    
-                    l60.innerHTML = (data["sumrewards"][0].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][0].reward/EthDecimal)*EthPrice)
-                    l12.innerHTML = (data["sumrewards"][1].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][1].reward/EthDecimal)*EthPrice)
-                    l24.innerHTML = (data["sumrewards"][2].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][2].reward/EthDecimal)*EthPrice)
-                    l7.innerHTML = (data["sumrewards"][3].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][3].reward/EthDecimal)*EthPrice)
-                    l30.innerHTML = (data["sumrewards"][4].reward/EthDecimal)+" ETH - $"+roundToTwo((data["sumrewards"][4].reward/EthDecimal)*EthPrice)
+                // console.log(data)
+                v2.value = (data.price * parseFloat(v1.value))
+                currentConvertionPrice = data.price
 
-                    total.innerHTML = "Total: "+(data.stats.immature + data.stats.balance)/EthDecimal+" ETH - $"+roundToTwo( ((data.stats.immature + data.stats.balance)/EthDecimal)*EthPrice)
-                    cleared.innerHTML = "Unpaid: "+(data.stats.balance)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.balance/EthDecimal)*EthPrice)
-                    pending.innerHTML = "Immature: "+(data.stats.immature)/EthDecimal+" ETH - $"+roundToTwo( (data.stats.immature/EthDecimal)*EthPrice)
+                info.innerHTML = "<strong>Last trade: Ask:</strong> "+data.ask+" <strong>Bid:</strong> "+data.bid+" <strong>Size:</strong> "+data.size+" <strong>Volume:</strong> "+data.volume+" "+ v1input.value
 
-                    var tmp1 = (data.stats.balance/EthDecimal).toFixed(4) / (data.config.minPayout/EthDecimal).toFixed(4)
-                    minPayout.innerHTML = (data.stats.balance/EthDecimal).toFixed(4)+"/"+(data.config.minPayout/EthDecimal).toFixed(4)+" ETH - "+Math.round(tmp1*100)+"% - $"+((data.stats.balance/EthDecimal)*EthPrice).toFixed(2)+"/$"+((data.config.minPayout/EthDecimal)*EthPrice).toFixed(2)
-                    
-                    document.getElementsByTagName("title")[0].innerHTML = minPayout.innerHTML
-                    var tempN =  (((data.config.minPayout - data.stats.balance)/EthDecimal) / (data.sumrewards[2].reward/EthDecimal) ) //data.config.minPayout/EthDecimal / (data.sumrewards[1].reward/EthDecimal*2) -
-                    
-                    if (  (data.stats.balance/EthDecimal) >= (data.config.minPayout/EthDecimal)   ){ tempN = 0 }
-                    if (tempN<0){ tempN = -tempN }
+                fetch("https://api.exchange.coinbase.com/currencies/"+cr1)
+                .then(response2 => response2.json())
+                .then(data2 => {
+                    console.log(data2.name)
+                    CurrencyName = data2.name
+                    CurrentName.innerHTML = CurrencyName +" = "+currentConvertionPrice+" "+Input2.value
+                    CurrentImage.src = 'https://cryptoicon-api.vercel.app/api/icon/'+cr1.toLowerCase()
 
-                    var ddd = roundToTwo(tempN)
-                    TimeLeftToMinPayout.innerHTML = ddd+" days = "+  getHoursAndMinutes(1440*parseFloat(ddd)) 
-                    
-                    var dd = roundToTwo(data.config.minPayout/EthDecimal / (data.sumrewards[2].reward/EthDecimal) )
-                    TimeToMinPayout.innerHTML = dd+" days = "+ getHoursAndMinutes(1440*parseFloat(dd)) 
-                    
-                    var dddd = new Date()
-                    var hhhh = dddd.getHours()
+                    GetPriceChart("1y")
 
-                    if (hhhh >= 13 && hhhh < 19){
-                        var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 13:00:00'
-                        SharesTimeStamp = Date.parse(str)
-                    }else if (hhhh >= 19 || hhhh < 2){
-                        var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 19:00:00'
-                        SharesTimeStamp = Date.parse(str)
-                    }else if (hhhh >= 2 && hhhh < 8){
-                        var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 01:00:00'
-                        SharesTimeStamp = Date.parse(str)
-                    }else if (hhhh >= 8 && hhhh < 13){
-                        var str = (dddd.getMonth()+1)+'/'+dddd.getDate()+'/'+dddd.getFullYear()+' 07:00:00'
-                        SharesTimeStamp = Date.parse(str)
-                    }
-                    
-                    var TSMinutes = (Date.now() - SharesTimeStamp) / 60000
-                    sharesScanTime.innerHTML = "Scan time: "+getHoursAndMinutes(TSMinutes) 
-                    
-                    sharesPerMinute.innerHTML = "Shares per minute: "+ (data.sharesValid/TSMinutes).toFixed(3)
-
-                    workers.innerHTML = ""
-                    for (var key in data.workers) {
-                        workers.innerHTML = workers.innerHTML + "<tr><td>"+ key +"</td><td>"+ roundToTwo(data.workers[key].hr/MhDecimal) +"</td><td>"+ roundToTwo(data.workers[key].hr2/MhDecimal) +"</td><td>"+ roundToTwo(data.workers[key].rhr/MhDecimal) +"</td><td>"+(data.workers[key].sharesValid/TSMinutes).toFixed(3) +"</td><td>"+ timeConverter(data.workers[key].lastBeat) +"</td><td>"+ data.workers[key].offline +"</td><td>"+ data.workers[key].sharesValid +"</td><td>"+ data.workers[key].sharesInvalid +"</td><td>"+ data.workers[key].sharesStale +"</td></tr>"
-                    }
-
-                    var RightNow = new Date();
-                    var horaActual = RightNow.getUTCHours()
-                    if (horaActual > 24) { horaActual -= 24 }
-                    if (horaActual<=12){ horaActual = 12 - horaActual }else{ horaActual = (24 - horaActual) + 12 }
-
-                    payoutTime.innerHTML = horaActual+" hours"
-
-                    payments.innerHTML = ""
-                    for (var key in data.payments) {
-                        payments.innerHTML = payments.innerHTML + "<tr><td>"+ data.payments[key].amount/EthDecimal +"</td><td>"+ "$" + roundToTwo(data.payments[key].amount/EthDecimal * EthPrice) +"</td><td>"+ data.payments[key].txFee/EthDecimal +"</td><td>"+ timeConverter(data.payments[key].timestamp) +"</td><td>   <a href='https://eth.2miners.com/es/account/"+currentAddress+"#payments' target='_blank' style='color:#00ff00'>"+ data.payments[key].tx.slice(0,6) +"...</a>    </td></tr>"
-                    }
-
-                    blocksFoundedP.innerHTML = data.rewards.length
-                    var limit = data.rewards.length
-
-                    blocksShowed.innerHTML = CustomLimit
-                    if (limit > CustomLimit){ limit = CustomLimit }
-                    if (CustomLimit-1 >= data.rewards.length){ limit = data.rewards.length }
-
-                    blocks.innerHTML = ""
-                    for (let i = 0; i < limit; i++) {
-                        var key = i
-                        blocks.innerHTML = blocks.innerHTML + "<tr><td>"+ data.rewards[key].blockheight +"</td><td>"+ data.rewards[key].reward/EthDecimal +"</td><td>"+ roundToTwo((data.rewards[key].reward/EthDecimal)* EthPrice) +"</td><td>"+ roundToTwo(data.rewards[key].percent*100) + "%" +"</td><td>"+ timeConverter(data.rewards[key].timestamp) +"</td></tr>"
-                        if (soundOn == true && data.rewards[key].reward/EthDecimal > minToPlaySound){
-                            var canSound = true
-                            for (let j = 0; j < blocksFounded.length; j++) {
-                                if (blocksFounded[j] == data.rewards[key].blockheight){
-                                    canSound = false
-                                }
-                            }
-                            if (canSound == true){
-                                RobotSay("new block reward of "+data.rewards[key].reward/EthDecimal)
-                                blocksFounded.push(data.rewards[key].blockheight)
-                            }
-                        }
-                    }
-                })
-            })
+                });
+            });
         }
-        count = count - 1
-        if (count<=0){
-            count = TimeLimit
-        }
-        update.innerHTML = count.toString()
-        await sleep(1000);
     }
-}
-main()
+
+    function update(){
+        // console.log(Input1.value)
+        v2input.innerHTML = ""
+        var l = 0
+        for (let i = 0; i < Currencies.length; i++) {
+            if (Input1.value == Currencies[i][0]) {
+                l = Currencies[i][1].length
+                for (let j = 0; j <  Currencies[i][1].length; j++) {
+                    v2input.innerHTML += '<option value="'+Currencies[i][1][j]+'" data-thumbnail="https://cryptoicon-api.vercel.app/api/icon/'+Currencies[i][1][j].toLowerCase()+'">'+Currencies[i][1][j]+'</option>'
+                }
+            }
+        }
+
+        document.getElementById("b2").style.height = (35*l)+"px"
+
+        var cryptoArray2 = [];
+        var cryptoNames = [];
+
+        $('.vodiapicker2 option').each(function(){
+            var img = $(this).attr("data-thumbnail");
+            var text = this.innerText;
+            var value = $(this).val();
+            var item = '<li><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></li>';
+            cryptoArray2.push(item);
+            cryptoNames.push(value)
+        })
+
+        $('#a2').html(cryptoArray2);
+        $('.btn-select2').html(cryptoArray2[0]);
+        $('.btn-select2').attr('value', cryptoNames[0]);
+
+        $('#a2 li').click(function(){
+            var img = $(this).find('img').attr("src");
+            var value = $(this).find('img').attr('value');
+            var text = this.innerText;
+            var item = '<li><img src="'+ img +'" alt="" /><span>'+ text +'</span></li>';
+            $('.btn-select2').html(item);
+            $('.btn-select2').attr('value', value);
+            $(".b2").toggle();
+
+            convert()
+            //console.log(value);
+        });
+
+        if (linked == false){
+            linked = true
+            $(".btn-select2").click(function(){
+                console.log("click")
+                $(".b2").toggle();
+            });
+        }
+
+        // var currentConversion = cryptoArray2.indexOf("USD")
+        //$('.btn-select2').html(cryptoArray2[0]);
+        //$('.btn-select2').attr('value', sessionLang);
+
+        // var sessionLang = localStorage.getItem('lang');
+        // if (sessionLang){
+        //     //find an item with value of sessionLang
+        //     var langIndex = cryptoArray2.indexOf(sessionLang);
+        //     $('.btn-select2').html(cryptoArray2[langIndex]);
+        //     $('.btn-select2').attr('value', sessionLang);
+        // } else {
+        //     var langIndex = cryptoArray2.indexOf('ch');
+        //     console.log(langIndex);
+        //     $('.btn-select2').html(cryptoArray2[langIndex]);
+        //     //$('.btn-select').attr('value', 'en');
+        // }
+
+        convert()
+    }
+    function update2(){
+        convert()
+    }
+
+    function updateValue1(){
+        if (!parseFloat(v2.value)) {
+            v2.value = 1
+        }
+        v1.value = parseFloat(v2.value) / currentConvertionPrice
+    }
+    function updateValue2(){
+        if (!parseFloat(v1.value)) {
+            v1.value = 1
+        }
+        v2.value = currentConvertionPrice * parseFloat(v1.value)
+    }
+
+     fetch('https://api.pro.coinbase.com/products/')
+        .then(response => response.json())
+        .then(data => {
+            mainData = data
+            console.log(data)
+            for (let i = 0; i < mainData.length; i++) {
+                if (!isListed(mainData[i].base_currency)) {
+                    Currencies.push([
+                        mainData[i].base_currency,
+                        []
+                    ]) 
+                }
+                listConvertions(mainData[i].base_currency,mainData[i].quote_currency)
+            }
+
+            console.log(Currencies)
+            for (let i = 0; i < Currencies.length; i++) {
+                v1input.innerHTML += '<option value="'+Currencies[i][0]+'" class="test"  data-thumbnail="https://cryptoicon-api.vercel.app/api/icon/'+Currencies[i][0].toLowerCase()+'"  >'+Currencies[i][0]+'</option>'
+            }
+
+            document.getElementById("b").style.height = (35*Currencies.length)+"px"
+
+            var cryptoArray1 = [];
+            $('.vodiapicker option').each(function(){
+                var img = $(this).attr("data-thumbnail");
+                var text = this.innerText;
+                var value = $(this).val();
+                var item = '<li><img src="'+ img +'" alt="" value="'+value+'"/><span>'+ text +'</span></li>';
+                cryptoArray1.push(item);
+            })
+
+            $('#a').html(cryptoArray1);
+            $('.btn-select').html(cryptoArray1[0]);
+            $('.btn-select').attr('value', 'BTC');
+
+            //change button stuff on click
+            $('#a li').click(function(){
+                var img = $(this).find('img').attr("src");
+                var value = $(this).find('img').attr('value');
+                var text = this.innerText;
+                var item = '<li><img src="'+ img +'" alt="" /><span>'+ text +'</span></li>';
+                $('.btn-select').html(item);
+                $('.btn-select').attr('value', value);
+                $(".b").toggle();
+
+                update()
+                //console.log(value);
+            });
+
+            $(".btn-select").click(function(){
+                    $(".b").toggle();
+                });
+
+            //check local storage for the lang
+            var sessionLang = localStorage.getItem('lang');
+            if (sessionLang){
+            //find an item with value of sessionLang
+            var langIndex = cryptoArray1.indexOf(sessionLang);
+            $('.btn-select').html(cryptoArray1[langIndex]);
+            $('.btn-select').attr('value', sessionLang);
+            } else {
+            var langIndex = cryptoArray1.indexOf('ch');
+            console.log(langIndex);
+            $('.btn-select').html(cryptoArray1[langIndex]);
+            //$('.btn-select').attr('value', 'en');
+            }
+         
+
+            update()
+            updateValue2()
+        });
+
+
+
+        
+
 </script>
 </html>
