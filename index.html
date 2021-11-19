@@ -140,8 +140,8 @@
             <p id="info" style="text-align: center;vertical-align: middle;margin: 0;margin-top: 0px;"></p>
         </div>
         <div class="row">
-            <div class="col-sm-1"><img src="" id="CurrentImage" style="width: 100%;"></div>
-            <div class="col-sm-11"><h1 style="width: 100%;" id="CurrentName"> Moneda</h1></div>
+            <div class="col-sm-1"><img src="" id="CurrentImage" style="width: 100%; display: none;" ></div>
+            <div class="col-sm-11"><h1 style="width: 100%;" id="CurrentName"></h1></div>
             <!-- <div class="col-sm-7"></div> -->
         </div>
         
@@ -388,7 +388,7 @@
                     CurrencyName = data2.name
                     CurrentName.innerHTML = CurrencyName +" = "+currentConvertionPrice+" "+Input2.value
                     CurrentImage.src = 'https://cryptoicon-api.vercel.app/api/icon/'+cr1.toLowerCase()
-
+                    CurrentImage.style.display = ''
                     GetPriceChart("1y")
 
                 });
